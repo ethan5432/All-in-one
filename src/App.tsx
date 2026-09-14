@@ -41,10 +41,10 @@ const MEMBERSHIP_DISPLAY: { key: MembershipKey; name: string }[] = [
 ];
 
 const BUSINESS_TIERS = [
-  { threshold: 0,     rate: 0.40, label: 'Under 5,000' },
-  { threshold: 5000,  rate: 0.45, label: '5,000–9,999' },
-  { threshold: 10000, rate: 0.50, label: '10,000–24,999' },
-  { threshold: 25000, rate: 0.55, label: '25,000+' },
+  { threshold: 0,     rate: 0.40, label: 'Under 5K' },
+  { threshold: 5000,  rate: 0.45, label: '5K–9,999' },
+  { threshold: 10000, rate: 0.50, label: '10K–24,999' },
+  { threshold: 25000, rate: 0.55, label: '25K+' },
 ] as const;
 
 const VOLUME_PRESETS = [100, 500, 1000, 5000, 10000, 25000];
@@ -420,6 +420,7 @@ function App() {
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
                 <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
 
+                <span className="biz-progression-label">Partner rate</span>
                 <div className="biz-progression">
                   <div className="biz-progression-track">
                     {BUSINESS_TIERS.map((tier, i) => {
@@ -497,7 +498,7 @@ function App() {
                   </div>
 
                   <div className="calc-earnings-panel">
-                    <span className="calc-earnings-eyebrow">Estimated partner earnings</span>
+                    <span className="calc-earnings-eyebrow">Estimated earnings</span>
                     <div className="calc-earnings-amount">${bizEarnings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                     <div className="calc-earnings-rate"><span className="calc-red-accent">{Math.round(bizRate * 100)}%</span> partner rate</div>
                     <div className="calc-earnings-count">{businessVolume.toLocaleString()} qualifying memberships</div>
