@@ -240,7 +240,7 @@ a { color: inherit; }
 
 .sat { position: absolute; z-index: 5; }
 .sat-lidia { top: 6%; left: -8%; width: 286px; }
-.sat-cta   { top: 62%; right: -16%; width: 200px; }
+.sat-cta   { top: 62%; right: 2%; width: 200px; }
 .float-card img { width: 100%; height: auto; display: block; border-radius: 22px; }
 
 .phone-glow {
@@ -1509,7 +1509,7 @@ h1 em { color: var(--red); font-style: normal; }
   .device-stage { width: min(100%, 500px); height: 580px; }
   .device-stage .phone { width: 350px; }
   .phone-pulse { width: 374px; height: 490px; }
-  .sat-cta { width: 150px; right: -14%; }
+  .sat-cta { width: 150px; right: 0%; }
   .sat-lidia { width: 209px; }
 }
 @media (max-width: 800px) {
