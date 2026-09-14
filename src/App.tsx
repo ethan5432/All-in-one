@@ -416,36 +416,6 @@ function App() {
           </div>
         </section>
 
-        {/* 3 — Join the Careverse creator network today (how-section moves up) */}
-        <section className="section how-section" id="how">
-          <div className="container">
-            <div className="center-intro reveal"><h2>Join the Careverse partner program today</h2></div>
-            <div className="how-arrow reveal" aria-hidden="true" />
-            <div className="how-steps">
-              <article className="how-step reveal reveal-delay-1">
-                <div className="how-photo"><img className="how-img-1" src="/images/jelle-van-leest-VV_U4PmDmHs-unsplash.jpg" alt="Creator applying to join the Careverse network" /></div>
-                <h3>Apply</h3>
-                <p>Tell us about yourself and what you create.</p>
-              </article>
-              <article className="how-step reveal reveal-delay-2">
-                <div className="how-photo"><img className="how-img-2" src="/images/rohan-krishnan-d8kp7EPgAmQ-unsplash.jpg" alt="Laptop and phone representing creator approval" /></div>
-                <h3>Get approved</h3>
-                <p>Our team will review your eligibility.</p>
-              </article>
-              <article className="how-step reveal reveal-delay-3">
-                <div className="how-photo"><img className="how-img-3" src="/images/john-FlPc9_VocJ4-unsplash.jpg" alt="Creator getting onboarded with affiliate tools" /></div>
-                <h3>Get onboarded</h3>
-                <p>Get your affiliate link, dashboard, and Creator Kit with everything you need to start creating.</p>
-              </article>
-              <article className="how-step reveal reveal-delay-4">
-                <div className="how-photo"><img className="how-img-4" src="/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg" alt="Creator sharing content and earning commission" /></div>
-                <h3>Share and earn</h3>
-                <p>Create content that drives qualifying membership conversions (with clear paid-partnership disclosure) and earn 50% commission.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
         {/* 5 — Healthcare should feel easier */}
         <section className="section easier-section">
           <div className="container">
@@ -555,6 +525,36 @@ function App() {
             </div>
 
             <a className="button memberships-cta reveal" href="https://careverse-care-benefits-preview.wcbjp5qnc6.chatgpt.site/#memberships" target="_blank" rel="noopener">Explore Careverse memberships</a>
+          </div>
+        </section>
+
+        {/* 3 — Join the Careverse partner program today */}
+        <section className="section how-section" id="how">
+          <div className="container">
+            <div className="center-intro reveal"><h2>Join the Careverse partner program today</h2></div>
+            <div className="how-arrow reveal" aria-hidden="true" />
+            <div className="how-steps">
+              <article className="how-step reveal reveal-delay-1">
+                <div className="how-photo"><img className="how-img-1" src="/images/jelle-van-leest-VV_U4PmDmHs-unsplash.jpg" alt="Creator applying to join the Careverse network" /></div>
+                <h3>Apply</h3>
+                <p>Tell us about yourself and what you create.</p>
+              </article>
+              <article className="how-step reveal reveal-delay-2">
+                <div className="how-photo"><img className="how-img-2" src="/images/rohan-krishnan-d8kp7EPgAmQ-unsplash.jpg" alt="Laptop and phone representing creator approval" /></div>
+                <h3>Get approved</h3>
+                <p>Our team will review your eligibility.</p>
+              </article>
+              <article className="how-step reveal reveal-delay-3">
+                <div className="how-photo"><img className="how-img-3" src="/images/john-FlPc9_VocJ4-unsplash.jpg" alt="Creator getting onboarded with affiliate tools" /></div>
+                <h3>Get onboarded</h3>
+                <p>Get your affiliate link, dashboard, and Creator Kit with everything you need to start creating.</p>
+              </article>
+              <article className="how-step reveal reveal-delay-4">
+                <div className="how-photo"><img className="how-img-4" src="/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg" alt="Creator sharing content and earning commission" /></div>
+                <h3>Share and earn</h3>
+                <p>Create content that drives qualifying membership conversions (with clear paid-partnership disclosure) and earn 50% commission.</p>
+              </article>
+            </div>
           </div>
         </section>
 
