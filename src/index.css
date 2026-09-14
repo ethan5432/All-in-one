@@ -225,7 +225,6 @@ a { color: inherit; }
   transform: translate(-50%, -50%) rotate(1deg); border-radius: 44px;
   border: 2px solid rgba(225, 6, 44, .5);
   pointer-events: none; z-index: 1;
-  animation: ring 4s cubic-bezier(.16, 1, .3, 1) infinite;
 }
 .phone-pulse.d2 { border-color: rgba(225, 6, 44, .22); animation-delay: .2s; }
 
@@ -234,7 +233,6 @@ a { color: inherit; }
   transform: translate(-50%, -50%) rotate(1deg);
   transform-origin: center; z-index: 4;
   filter: drop-shadow(0 24px 80px rgba(24, 25, 29, .12));
-  animation: heartbeat 5s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 .phone-screen { width: 100%; height: auto; display: block; object-fit: contain; }
 
@@ -249,7 +247,6 @@ a { color: inherit; }
   border-radius: 48px;
   background: radial-gradient(ellipse 75% 78% at center, rgba(225, 6, 44, 0.5) 0%, rgba(225, 6, 44, 0.28) 35%, rgba(225, 6, 44, 0.08) 65%, transparent 80%);
   filter: blur(20px);
-  animation: glowPulse 5s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 @keyframes glowPulse {
   0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) rotate(1deg) scale(1); }
@@ -262,7 +259,6 @@ a { color: inherit; }
   border-radius: 28px;
   background: radial-gradient(ellipse at center, rgba(225, 6, 44, 0.18) 0%, rgba(225, 6, 44, 0.07) 45%, transparent 75%);
   filter: blur(14px);
-  animation: satGlowPulse 5s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 @keyframes satGlowPulse {
   0%, 100% { opacity: 0.25; }
@@ -275,11 +271,10 @@ a { color: inherit; }
 
 .sat {
   animation:
-    satFloat 10s ease-in-out infinite,
-    satPump 5s cubic-bezier(.45, 0, .55, 1) infinite;
+    satFloat 10s ease-in-out infinite;
 }
-.sat-lidia { animation-delay: 0s, 1.6s; }
-.sat-cta   { animation-delay: 0s, 1.6s; }
+.sat-lidia { }
+.sat-cta   { }
 
 @keyframes heartbeat {
   0%, 100% { transform: translate(-50%, -50%) rotate(1deg) scale(1); }
@@ -1557,7 +1552,7 @@ h1 em { color: var(--red); font-style: normal; }
   .hero-visual { min-height: auto; }
   .device-stage { width: 100%; height: auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
   .phone-pulse { display: none; }
-  .device-stage .phone { position: relative; left: auto; top: auto; transform: rotate(1deg); width: min(340px, 82vw); animation: heartbeatMobile 3.2s cubic-bezier(.16, 1, .3, 1) infinite; order: 1; }
+  .device-stage .phone { position: relative; left: auto; top: auto; transform: rotate(1deg); width: min(340px, 82vw); order: 1; }
   .device-stage .sat { position: relative; top: auto; left: auto; right: auto; bottom: auto; margin: 0; animation: none; }
   .device-stage .sat-cta { display: none; }
   .device-stage .sat-glow { display: none; }
@@ -1600,7 +1595,6 @@ h1 em { color: var(--red); font-style: normal; }
   background: radial-gradient(ellipse 68% 68% at center,
               rgba(225, 6, 44, 0.22) 0%, rgba(225, 6, 44, 0.10) 40%, transparent 72%);
   filter: blur(44px);
-  animation: heartGlow 5s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 @keyframes heartGlow {
   0%, 100% { opacity: 0.28; transform: translate(-50%, -50%) rotate(1deg) scale(1); }
