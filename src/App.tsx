@@ -419,7 +419,7 @@ function App() {
         {/* 3 — Join the Careverse creator network today (how-section moves up) */}
         <section className="section how-section" id="how">
           <div className="container">
-            <div className="center-intro reveal"><h2>Join the Careverse creator network today</h2></div>
+            <div className="center-intro reveal"><h2>Join the Careverse partner program today</h2></div>
             <div className="how-arrow reveal" aria-hidden="true" />
             <div className="how-steps">
               <article className="how-step reveal reveal-delay-1">
@@ -534,9 +534,9 @@ function App() {
                 <p className="memberships-disclaimer">Careverse memberships are paid benefits programs, not health insurance or medical care. Benefits, eligibility and qualifying services vary by membership and applicable terms.</p>
               </div>
               <div className="memberships-text">
-                <h2 className="memberships-title">What you're earning <span className="memberships-red">commission</span> on</h2>
-                <p className="memberships-bridge">Careverse memberships give people additional benefits for managing the care they need. Lidia helps them understand those benefits, make the most of them, and navigate the healthcare they already have.</p>
-                <div className="memberships-sublabel">What your audience gets with a Careverse membership</div>
+                <h2 className="memberships-title">What you're <span className="memberships-red">offering</span> the people you serve</h2>
+                <p className="memberships-bridge">Careverse gives people another way to navigate and access care. Lidia helps them understand their options and find their next step, while optional memberships add benefits that can make care more accessible and affordable.</p>
+                <div className="memberships-sublabel">What people get with a Careverse membership</div>
                 <div className="memberships-rows">
                   <div className="memberships-row">
                     <div className="memberships-row-label">Money toward eligible care</div>
@@ -544,11 +544,11 @@ function App() {
                   </div>
                   <div className="memberships-row">
                     <div className="memberships-row-label">Member pricing on participating services</div>
-                    <p className="memberships-row-body">Members can access participating services and offers at member prices. The provider sets the price, and the member pays for the service.</p>
+                    <p className="memberships-row-body">Members can access participating services and offers at member prices, with the member paying the provider for the service.</p>
                   </div>
                   <div className="memberships-row">
-                    <div className="memberships-row-label">Benefits that fit different needs</div>
-                    <p className="memberships-row-body">Different memberships are built around different situations — from individual care to families, parents and retirement, and people coordinating care across households.</p>
+                    <div className="memberships-row-label">Benefits for different needs</div>
+                    <p className="memberships-row-body">Memberships are designed around different needs — from individual and family care to broader household needs.</p>
                   </div>
                 </div>
               </div>
