@@ -247,7 +247,7 @@ function App() {
                 </div>
                 <div className="partner-type">
                   <h3>Networks</h3>
-                  <p>Bring Careverse to the partners you manage.</p>
+                  <p className="partner-type-intro">Bring Careverse to the partners you manage.</p>
                   <p className="partner-type-sub">For organizations that manage creators, agencies, affiliates, sellers, or other partners.</p>
                 </div>
               </div>
