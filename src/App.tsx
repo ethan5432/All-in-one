@@ -419,7 +419,7 @@ function App() {
         {/* Network Partners */}
         <section className="section network-section" id="network">
           <div className="container network-grid">
-            <div className="network-diagram-col reveal">
+            <div className="network-diagram-col">
               <svg className="network-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 920" width="100%" height="100%" role="img" aria-label="Network partner ecosystem diagram">
                 <defs>
                   <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'); .font-sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .text-ink { fill: #18191D; } .text-body { fill: #4A4D55; } .text-muted { fill: #6B6E76; } .text-light { fill: #92959E; } .text-red { fill: #E1062C; }`}</style>

@@ -1664,18 +1664,13 @@ h1 em { color: var(--red); font-style: normal; }
 }
 
 /* Entrance animations */
-.network-node {
-  opacity: 0;
-  animation: networkNodeIn 0.6s ease-out forwards;
+.network-node,
+.network-label {
+  opacity: 1;
 }
 .network-line {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: networkLineDraw 0.8s ease-out forwards;
-}
-.network-label {
-  opacity: 0;
-  animation: networkLabelIn 0.5s ease-out forwards;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
 }
 @keyframes networkNodeIn {
   to { opacity: 1; transform: translateY(0); }
