@@ -264,13 +264,13 @@ function App() {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
           <nav className={menuOpen ? 'main-nav open' : 'main-nav'}>
-            <a href="#pricing" onClick={() => setMenuOpen(false)}>Earn</a>
-            <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)}>Partners earn</a>
+            <a href="#network" onClick={() => setMenuOpen(false)}>Networks</a>
             <a href="#why" onClick={() => setMenuOpen(false)}>Meet Lidia</a>
             <a href="#memberships" onClick={() => setMenuOpen(false)}>Memberships</a>
-            <a href="#pricing" onClick={() => setMenuOpen(false)}>Who it’s for</a>
+            <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
             <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-            <a className="button button-small" href="https://careverse-creator-application.vercel.app/" onClick={() => setMenuOpen(false)}>Apply to join <ArrowRight size={16} /></a>
+            <a className="button button-small" href="https://careverse-creator-application.vercel.app/" onClick={() => setMenuOpen(false)}>Become a partner <ArrowRight size={16} /></a>
           </nav>
         </div>
       </header>
@@ -436,7 +436,6 @@ function App() {
                 <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
 
                 <div className="biz-explorer">
-                  <span className="biz-explorer-label">What could your volume be worth?</span>
                   <div className="biz-rate-inline">
                     <span className="biz-rate-pct">{Math.round(bizRate * 100)}%</span>
                     <span className="biz-rate-word">partner rate</span>

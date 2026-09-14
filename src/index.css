@@ -750,14 +750,6 @@ h1 em { color: var(--red); font-style: normal; }
 .biz-explorer {
   margin-bottom: 24px;
 }
-.biz-explorer-label {
-  display: block;
-  margin-bottom: 14px;
-  color: #18191D;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -.01em;
-}
 .biz-rate-inline {
   display: flex;
   align-items: baseline;
