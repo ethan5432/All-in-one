@@ -137,8 +137,8 @@ const faqCategories: FaqCategory[] = [
     items: [
       ['Is Careverse insurance?', 'No. Careverse memberships are benefits and savings programs\u2014not health insurance or medical care.'],
       ['Can partners give medical advice?', 'No. Partners should not diagnose conditions, recommend or stop treatment, or promise health outcomes.'],
-      ['Do partners need to disclose their relationship with Careverse?', 'When a partner is promoting or endorsing Careverse and has a material financial relationship that isn\u2019t otherwise clear, that relationship should be clearly disclosed. Creator-specific disclosure guidance is provided during onboarding.'],
-      ['What can\u2019t partners do?', 'Partners may not make misleading health or savings claims, promise guaranteed outcomes or savings, present Careverse as insurance or medical care, create fake reviews or testimonials, or encourage people to change or stop medical treatment.'],
+      ['Do partners need to disclose their relationship with Careverse?', 'When a partner is promoting or endorsing Careverse and has a material financial relationship that isn’t otherwise clear, that relationship should be clearly disclosed. Creator-specific disclosure guidance is provided during onboarding.'],
+      ['What can’t partners do?', 'Partners may not make misleading health or savings claims, promise guaranteed outcomes or savings, present Careverse as insurance or medical care, create fake reviews or testimonials, or encourage people to change or stop medical treatment.'],
     ],
   },
 ];
@@ -732,7 +732,7 @@ function App() {
               <article className="how-step reveal reveal-delay-2">
                 <div className="how-photo"><img className="how-img-2" src="/images/rohan-krishnan-d8kp7EPgAmQ-unsplash.jpg" alt="Laptop and phone representing partner approval" /></div>
                 <h3>Get approved</h3>
-                <p>We\u2019ll review your application and confirm your partner setup.</p>
+                <p>We’ll review your application and confirm your partner setup.</p>
               </article>
               <article className="how-step reveal reveal-delay-3">
                 <div className="how-photo"><img className="how-img-3" src="/images/john-FlPc9_VocJ4-unsplash.jpg" alt="Partner getting set up with account, payouts, and tracking" /></div>
