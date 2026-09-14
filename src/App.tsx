@@ -99,16 +99,103 @@ function getAveragePrice(mix: Record<MembershipKey, number>, payment: PaymentTyp
   return total;
 }
 
-const faqs = [
-  ['What is Careverse?', 'Careverse is a care-navigation platform. Its free AI assistant, Lidia, helps people find, compare and organize care and benefits. Paid Careverse memberships add a funded care allowance and member pricing on participating services. Careverse is a benefits and navigation service — not health insurance, not medical care, and not a medical provider.'],
-  ['How do I join the Creator Network?', 'Click Apply, submit your public channel and a short note about the care stories you share. If you’re a fit, we’ll onboard you and open your affiliate link.'],
-  ['What do I need to become a Careverse creator?', 'Authentic health, wellness, beauty, fitness, or caregiving content, plus at least one active public channel. No follower minimum. You do not need a medical license.'],
-  ['How will I know when I make a sale?', 'Full referral, sales, and commission stats live in your affiliate dashboard.'],
-  ['Can I give medical advice?', 'No. Share your experience and point people to Careverse. Don’t diagnose, promise outcomes, or tell anyone to start or stop treatment.'],
-  ['What can’t I promote?', 'No fake reviews, buying engagement, claiming Careverse replaces a doctor, or targeting people in a medical crisis with scare tactics. Don\'t call Careverse insurance or imply it\'s medical coverage. Don\'t promise specific savings, discounts, or dollar amounts.'],
-  ['Do I have to disclose that I\'m paid?', 'Yes. FTC rules require you to clearly disclose your affiliate relationship in any content promoting Careverse (e.g., #ad or \'paid partnership\'). We\'ll give you the exact language in your creator kit.'],
-  ['Is Careverse insurance?', 'No. Careverse memberships are a benefits and savings program — not health insurance or medical care.'],
-  ['Where is Careverse available?', 'Careverse packages are currently available in the United States and Canada, in USD and CAD.'],
+const compliancePoints = [
+  { title: 'Not insurance', body: 'Careverse memberships are benefits and savings programs—not health insurance or medical care.' },
+  { title: 'No medical advice', body: 'Partners may share Careverse but cannot diagnose, recommend treatment, or promise health outcomes.' },
+  { title: 'Disclose your relationship', body: 'If you earn compensation from Careverse, clearly disclose that relationship when promoting it.' },
+  { title: 'Use approved claims', body: 'Do not promise savings, outcomes, coverage, discounts, or access beyond what Careverse currently provides.' },
+];
+
+type FaqItem = [string, string];
+type FaqCategory = { title: string; items: FaqItem[] };
+
+const faqCategories: FaqCategory[] = [
+  {
+    title: 'About Careverse',
+    items: [
+      ['What is Careverse?', 'Careverse is a care-navigation platform. Its free AI assistant, Lidia, helps people find, understand, compare, and organize care. Paid Careverse memberships add participating services, member pricing, care benefits, and defined support.\n\nCareverse memberships are not health insurance, medical insurance, or medical care, and Careverse is not a medical provider.'],
+      ['Is Lidia free?', 'Yes. Lidia\u2019s core care-navigation experience is free. A paid membership is optional.'],
+      ['Is Careverse insurance?', 'No. Careverse memberships are benefits and savings programs\u2014not health insurance or medical care. They do not replace health insurance, a healthcare provider, or emergency care.'],
+      ['Where is Careverse available?', 'Careverse memberships are currently available in the United States and Canada, subject to the availability and eligibility of particular products and services.'],
+    ],
+  },
+  {
+    title: 'Who can partner?',
+    items: [
+      ['Who can become a Careverse partner?', 'Careverse works with creators, businesses and organizations, agencies, and networks that want to offer Careverse memberships to the people they serve.'],
+      ['Do I need a large following or customer base?', 'No minimum audience, customer base, or sales volume is required to apply. Eligibility depends on the partner and the applicable program terms.'],
+      ['Can businesses and agencies participate?', 'Yes. Businesses and agencies can offer Careverse memberships through their own customer-facing experience and earn partner margin on qualifying membership conversions.'],
+      ['Can networks participate?', 'Yes. Networks can bring participating creators, agencies, affiliates, sellers, or other partners into the Careverse program and may earn network economics on qualifying business generated through the network, subject to their agreement.'],
+      ['Do I have to be a healthcare professional?', 'No. Creators and other partners do not need to be medical professionals or licensed clinicians to participate.'],
+    ],
+  },
+  {
+    title: 'Earnings & commissions',
+    items: [
+      ['How do partners earn?', 'Partners earn on qualifying Careverse membership conversions attributed to them. The applicable commission or margin is determined by the partner\u2019s program terms.'],
+      ['Do creators and businesses have the same commission structure?', 'Not necessarily. Partner economics can vary by partner type, volume, agreement, and program terms.'],
+      ['Can commission rates change?', 'Yes. Careverse may update partner rates, tiers, offers, or program terms from time to time. The applicable terms for a partner are those provided in their current agreement or program documentation.'],
+      ['Do networks earn on partner sales?', 'Network economics may include an override on qualifying business generated by participating partners, as specified in the applicable network agreement.'],
+      ['Is partner compensation a payment for referring patients to healthcare providers?', 'No. Partner compensation is tied to qualifying Careverse membership conversions, not to referring a patient to a particular healthcare provider, recommending a specific treatment, or generating a clinical referral.'],
+    ],
+  },
+  {
+    title: 'Sales, attribution & storefronts',
+    items: [
+      ['How are sales attributed?', 'Qualifying membership conversions are attributed using the applicable Careverse partner tracking and attribution system.'],
+      ['How will I know when I make a sale?', 'Your partner dashboard provides applicable referral, sales, and commission information.'],
+      ['What happens if someone visits through my link but buys later?', 'Attribution is governed by the applicable partner tracking and program terms. Partners should use their assigned links, storefronts, or other approved tracking methods when promoting Careverse.'],
+      ['Can I have my own storefront?', 'Yes. Depending on the partner type and program structure, partners may have a branded, co-branded, or white-labeled customer-facing storefront.'],
+      ['Can a network\u2019s partners have their own storefronts?', 'Yes. Participating partners may have their own customer-facing experience while remaining part of the broader network structure.'],
+    ],
+  },
+  {
+    title: 'What partners can say',
+    items: [
+      ['What can I say about Careverse?', 'You can share your genuine experience and explain what Careverse does, who it is for, how Lidia works, and what membership benefits are currently offered.\n\nClaims about savings, benefits, health outcomes, pricing, or availability must accurately reflect current Careverse materials and program terms.'],
+      ['Can I give medical advice?', 'No. Partners should not diagnose conditions, recommend or stop treatments, interpret someone\u2019s medical situation, or promise a particular health outcome. Your role is to share Careverse\u2014not act as someone\u2019s doctor.'],
+      ['Can I say that Careverse will save someone money?', 'Only when the statement accurately reflects the applicable membership, participating service, pricing, eligibility, and current Careverse materials. Do not promise a specific savings amount unless Careverse has provided that exact claim for approved use.'],
+      ['Can I say Careverse replaces insurance?', 'No. Careverse should never be presented as a replacement for health insurance, medical insurance, a doctor, or emergency care.'],
+      ['Can I make my own claims or guarantees?', 'Do not make claims that Careverse has not approved or that you cannot substantiate. This includes guaranteed savings, guaranteed outcomes, guaranteed access, medical claims, or claims that imply Careverse is insurance or medical care.'],
+    ],
+  },
+  {
+    title: 'Disclosures & endorsements',
+    items: [
+      ['Do I have to disclose that I\u2019m paid?', 'Yes. If you have a financial or other material relationship with Careverse, disclose that relationship clearly when promoting Careverse. Examples may include #ad or \u201cpaid partnership with Careverse.\u201d The disclosure should be easy to notice and understand and should appear with the promotion or endorsement.'],
+      ['Does my disclosure have to be in every post?', 'The disclosure should be made whenever your relationship with Careverse would be material to the audience. Follow the disclosure guidance and your applicable Careverse partner terms.'],
+      ['Can I pretend I\u2019m an ordinary customer?', 'No. Do not hide or misrepresent your relationship with Careverse.'],
+      ['Can I use testimonials or customer stories?', 'Only if they are genuine, accurately presented, and used in accordance with Careverse\u2019s approved marketing rules. Do not manufacture reviews, alter someone\u2019s experience, or imply that one person\u2019s result is typical when it is not supported.'],
+      ['Can I say something worked for me?', 'You may share a genuine personal experience, but your experience does not give you permission to make unsupported health, savings, or outcome claims about what someone else should expect.'],
+    ],
+  },
+  {
+    title: 'Promotion & compliance',
+    items: [
+      ['What can\u2019t I promote or do?', 'Partners may not:\n\n- Give medical advice or diagnose people\n- Promise medical outcomes or guaranteed results\n- Claim Careverse is insurance\n- Claim Careverse replaces a doctor, insurance, or emergency care\n- Make unsupported health or savings claims\n- Promise specific discounts or dollar savings unless approved\n- Create fake reviews or testimonials\n- Buy fake engagement or manipulate referrals\n- Misrepresent their relationship with Careverse\n- Use misleading advertising or claims\n- Encourage someone to stop or change medical treatment\n- Impersonate Careverse or another partner\n- Use unapproved Careverse branding, offers, or pricing\n- Target people with misleading claims based on a medical condition or crisis\n- Represent a membership as something it is not'],
+      ['Can I run paid ads?', 'Only in accordance with your partner agreement and Careverse\u2019s advertising rules. Certain channels, keywords, claims, targeting methods, or brand terms may require approval or may be prohibited.'],
+      ['Can I use Careverse\u2019s name and branding?', 'Use Careverse names, logos, offers, and other brand assets only in accordance with the applicable brand and partner guidelines.'],
+      ['Can I create my own landing page or offer?', 'Only when permitted by your partner agreement and applicable Careverse guidelines. Pricing, benefits, claims, and product descriptions must remain accurate and current.'],
+    ],
+  },
+  {
+    title: 'Privacy & health information',
+    items: [
+      ['Should I collect someone\u2019s medical information?', 'No. Partners should not ask people to send medical records, diagnoses, insurance information, medications, or other sensitive health information through social DMs, comments, email, or other partner channels unless specifically authorized by Careverse. Direct people to the appropriate Careverse experience instead.'],
+      ['What happens if someone sends me their medical information?', 'Do not repost, share, publish, or use it for marketing. Direct the person to the appropriate Careverse support or care-navigation channel.'],
+      ['Can I use someone\u2019s health story in my content?', 'Only with appropriate permission and in accordance with Careverse\u2019s privacy and marketing requirements. Never expose someone\u2019s private health information simply because they shared it with you privately.'],
+      ['How does Careverse handle privacy?', 'Careverse takes privacy and security seriously. The privacy rules that apply to Careverse depend on the services and information involved. See the Careverse Privacy Policy and applicable agreements for details.'],
+    ],
+  },
+  {
+    title: 'Branding & partner relationships',
+    items: [
+      ['Can I offer Careverse under my own brand?', 'Depending on the partner program, yes. Careverse can support branded, co-branded, and white-labeled customer experiences.'],
+      ['Can I tell people that Careverse powers the experience?', 'Yes, where appropriate. Partners do not need to pretend they built the underlying product. Your agreement and brand guidelines determine how Careverse is identified.'],
+      ['Can I change Careverse product or membership terms?', 'No. Partners should use the current approved product information, pricing, benefits, and terms supplied by Careverse.'],
+      ['Who is responsible for partner marketing?', 'Partners are responsible for following applicable laws, platform rules, and their agreement with Careverse. Network and organizational agreements may establish additional responsibilities for participating partners.'],
+    ],
+  },
 ];
 
 function LidiaConversation() {
@@ -717,7 +804,46 @@ function App() {
 
         {/* 9 — FAQ / The details */}
         <section className="section faq-section" id="faq">
-          <div className="container faq-grid"><div className="faq-heading"><div className="eyebrow">The details</div><h2>Good questions deserve clear answers.</h2><p>Still curious? Reach the creator team at <a href="mailto:info@careverse.ai">info@careverse.ai</a>.</p></div><div className="faq-list">{faqs.map(([question, answer], index) => <details key={question} open={index === 0}><summary>{question}<span><ChevronDown size={18} /></span></summary><p>{answer}</p></details>)}</div></div>
+          <div className="container">
+            <div className="faq-heading">
+              <h2>Frequently asked questions</h2>
+              <p>Everything you need to know about Careverse, partnering, earnings, promotion, and program guidelines.</p>
+            </div>
+
+            <div className="faq-compliance-strip">
+              <h3 className="faq-compliance-title">Before you promote Careverse</h3>
+              <div className="faq-compliance-grid">
+                {compliancePoints.map((pt) => (
+                  <div key={pt.title} className="faq-compliance-item">
+                    <span className="faq-compliance-item-title">{pt.title}</span>
+                    <span className="faq-compliance-item-body">{pt.body}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="faq-categories">
+              {faqCategories.map((cat, catIndex) => (
+                <div key={cat.title} className="faq-category-card">
+                  <h3 className="faq-category-title">{cat.title}</h3>
+                  <div className="faq-category-items">
+                    {cat.items.map(([question, answer], itemIndex) => (
+                      <details key={question} open={catIndex === 0 && itemIndex === 0}>
+                        <summary>{question}<span><ChevronDown size={18} /></span></summary>
+                        <p>{answer}</p>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="faq-support-block">
+              <h3 className="faq-support-title">Still have a question?</h3>
+              <p className="faq-support-text">Your partner agreement and Creator Kit contain the current program terms, approved messaging, disclosures, and promotional guidelines.</p>
+              <a className="faq-support-link" href="mailto:info@careverse.ai">Contact Partner Support <ArrowRight size={15} /></a>
+            </div>
+          </div>
         </section>
       </main>
 
