@@ -1651,16 +1651,18 @@ h1 em { color: var(--red); font-style: normal; }
 .network-section { background: var(--bg); padding: 112px 0; }
 .network-grid {
   display: grid;
-  grid-template-columns: 57% 43%;
-  gap: 64px;
+  grid-template-columns: 64% 36%;
+  gap: 48px;
   align-items: center;
 }
 .network-diagram-col { min-width: 0; }
 .network-diagram {
   width: 100%;
+  max-width: 760px;
   height: auto;
   display: block;
   border-radius: 20px;
+  margin: 0 auto;
 }
 
 /* Entrance animations */
