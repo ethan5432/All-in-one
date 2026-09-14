@@ -41,11 +41,20 @@ const MEMBERSHIP_DISPLAY: { key: MembershipKey; name: string }[] = [
 ];
 
 const BUSINESS_TIERS = [
-  { threshold: 0,     rate: 0.40, label: 'Under 5K' },
-  { threshold: 5000,  rate: 0.45, label: '5K–9,999' },
-  { threshold: 10000, rate: 0.50, label: '10K–24,999' },
-  { threshold: 25000, rate: 0.55, label: '25K+' },
+  { threshold: 0,     rate: 0.40, label: 'Under 5K',          desc: 'Under 5,000 qualifying memberships' },
+  { threshold: 5000,  rate: 0.45, label: '5K–9,999',        desc: '5,000–9,999 qualifying memberships' },
+  { threshold: 10000, rate: 0.50, label: '10K–24,999',      desc: '10,000–24,999 qualifying memberships' },
+  { threshold: 25000, rate: 0.55, label: '25K+',            desc: '25,000+ qualifying memberships' },
 ] as const;
+
+const VOLUME_TICK_LABELS: Record<number, string> = {
+  100: '100',
+  500: '500',
+  1000: '1K',
+  5000: '5K',
+  10000: '10K',
+  25000: '25K+',
+};
 
 const VOLUME_PRESETS = [100, 500, 1000, 5000, 10000, 25000];
 
@@ -230,6 +239,12 @@ function App() {
   const bizRate = getBusinessRate(businessVolume);
   const bizAvgPrice = getAveragePrice(businessMix, bizPaymentType);
   const bizEarnings = bizCanEarn ? businessVolume * bizAvgPrice * bizRate : 0;
+
+  const bizVolumeIndex = Math.max(0, VOLUME_PRESETS.indexOf(businessVolume));
+  const activeBizTier = BUSINESS_TIERS.find((t, i) =>
+    businessVolume >= t.threshold &&
+    (i === BUSINESS_TIERS.length - 1 || businessVolume < BUSINESS_TIERS[i + 1].threshold)
+  ) ?? BUSINESS_TIERS[0];
 
   const updateMix = (key: MembershipKey, value: number) => {
     setBusinessMix((prev) => ({ ...prev, [key]: Math.max(0, Math.min(100, isNaN(value) ? 0 : value)) }));
@@ -420,38 +435,27 @@ function App() {
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
                 <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
 
-                <span className="biz-progression-label">Partner rate</span>
-                <div className="biz-progression">
-                  <div className="biz-progression-track">
-                    {BUSINESS_TIERS.map((tier, i) => {
-                      const isActive = businessVolume >= tier.threshold &&
-                        (i === BUSINESS_TIERS.length - 1 || businessVolume < BUSINESS_TIERS[i + 1].threshold);
-                      return (
-                        <div key={i} className={`biz-tier ${isActive ? 'biz-tier-active' : ''}`}>
-                          <span className="biz-tier-rate">{Math.round(tier.rate * 100)}%</span>
-                          <span className="biz-tier-volume">{tier.label}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
                 <div className="biz-explorer">
                   <span className="biz-explorer-label">What could your volume be worth?</span>
+                  <div className="biz-rate-inline">
+                    <span className="biz-rate-pct">{Math.round(bizRate * 100)}%</span>
+                    <span className="biz-rate-word">partner rate</span>
+                    <span className="biz-rate-tier">{activeBizTier.desc}</span>
+                  </div>
                   <div className="biz-slider-wrap">
                     <div className="biz-slider-ticks">
                       {VOLUME_PRESETS.map((tick) => (
-                        <span key={tick} className={`biz-slider-tick ${businessVolume === tick ? 'biz-slider-tick-active' : ''}`} onClick={() => setBusinessVolume(tick)}>{tick.toLocaleString()}</span>
+                        <span key={tick} className={`biz-slider-tick ${businessVolume === tick ? 'biz-slider-tick-active' : ''}`} onClick={() => setBusinessVolume(tick)}>{VOLUME_TICK_LABELS[tick]}</span>
                       ))}
                     </div>
                     <input
                       type="range"
                       className="biz-slider"
-                      min={100}
-                      max={25000}
-                      step={100}
-                      value={businessVolume}
-                      onChange={(e) => setBusinessVolume(parseInt(e.target.value))}
+                      min={0}
+                      max={VOLUME_PRESETS.length - 1}
+                      step={1}
+                      value={bizVolumeIndex}
+                      onChange={(e) => setBusinessVolume(VOLUME_PRESETS[parseInt(e.target.value)])}
                       aria-label="Qualifying membership volume"
                     />
                     <div className="biz-slider-value">{businessVolume.toLocaleString()} memberships</div>
