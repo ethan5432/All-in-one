@@ -221,7 +221,7 @@ a { color: inherit; }
 .device-stage { position: relative; width: min(620px, 100%); height: 691px; margin: 0 auto; }
 
 .phone-pulse {
-  position: absolute; left: 58%; top: 50%; width: 305px; height: 677px;
+  position: absolute; left: 58%; top: 42%; width: 305px; height: 677px;
   transform: translate(-50%, -50%) rotate(1deg); border-radius: 44px;
   border: 2px solid rgba(225, 6, 44, .5);
   pointer-events: none; z-index: 1;
@@ -230,7 +230,7 @@ a { color: inherit; }
 .phone-pulse.d2 { border-color: rgba(225, 6, 44, .22); animation-delay: .2s; }
 
 .phone {
-  position: absolute; left: 58%; top: 50%; width: 281px; max-height: 691px;
+  position: absolute; left: 58%; top: 42%; width: 281px; max-height: 691px;
   transform: translate(-50%, -50%) rotate(1deg);
   transform-origin: center; z-index: 4;
   filter: drop-shadow(0 24px 80px rgba(24, 25, 29, .12));
@@ -239,12 +239,12 @@ a { color: inherit; }
 .phone-screen { width: 100%; height: auto; display: block; object-fit: contain; }
 
 .sat { position: absolute; z-index: 5; }
-.sat-lidia { top: 12%; left: -8%; width: 286px; }
+.sat-lidia { top: 6%; left: -8%; width: 286px; }
 .sat-cta   { top: 62%; right: -16%; width: 280px; }
 .float-card img { width: 100%; height: auto; display: block; border-radius: 22px; }
 
 .phone-glow {
-  position: absolute; left: 58%; top: 50%; width: 302px; height: 677px;
+  position: absolute; left: 58%; top: 42%; width: 302px; height: 677px;
   transform: translate(-50%, -50%) rotate(1deg); z-index: 2; pointer-events: none;
   border-radius: 48px;
   background: radial-gradient(ellipse 75% 78% at center, rgba(225, 6, 44, 0.5) 0%, rgba(225, 6, 44, 0.28) 35%, rgba(225, 6, 44, 0.08) 65%, transparent 80%);
@@ -1323,7 +1323,7 @@ h1 em { color: var(--red); font-style: normal; }
 .footer-social { display: flex; align-items: center; gap: 6px; }
 .footer-disclaimer { padding-bottom: 16px; margin: 0; }
 .footer-disclaimer p { color: color-mix(in srgb, var(--card) 45%, transparent); font-size: 11px; line-height: 1.5; margin: 0; text-align: center; }
-.hero-microcopy { position: absolute; left: 0; right: 0; bottom: -96px; z-index: 6; text-align: center; font-size: 13px; line-height: 1.5; color: var(--muted); max-width: 360px; margin: 0 auto; padding: 0 8px; }
+.hero-microcopy { position: absolute; left: 0; right: 0; bottom: -48px; z-index: 6; text-align: center; font-size: 13px; line-height: 1.5; color: var(--muted); max-width: 360px; margin: 0 auto; padding: 0 8px; }
 
 /* Animations */
 .reveal { animation: fade-up .7s cubic-bezier(0,0,.2,1) both; }
