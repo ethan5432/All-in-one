@@ -12,6 +12,49 @@ import {
 type PaymentType = 'annual' | 'lifetime';
 type PartnerMode = 'creator' | 'business';
 
+const BUSINESS_ECONOMICS = {
+  memberships: {
+    individual: 149,
+    family: 399,
+    premium: 999,
+  },
+  mixes: {
+    conservative: { individual: 0.70, family: 0.25, premium: 0.05 },
+    higherValue: { individual: 0.50, family: 0.35, premium: 0.15 },
+  },
+  tiers: [
+    { min: 0, max: 4999, rate: 0.30 },
+    { min: 5000, max: 9999, rate: 0.35 },
+    { min: 10000, max: 24999, rate: 0.40 },
+    { min: 25000, max: Infinity, rate: 0.45 },
+  ],
+  volumePresets: [100, 500, 1000, 5000, 10000],
+} as const;
+
+type MixKey = keyof typeof BUSINESS_ECONOMICS.mixes;
+
+type Mix = typeof BUSINESS_ECONOMICS.mixes[MixKey];
+
+function calculateAverageMembershipValue(mix: Mix): number {
+  const m = BUSINESS_ECONOMICS.memberships;
+  return mix.individual * m.individual + mix.family * m.family + mix.premium * m.premium;
+}
+
+function getPartnerTier(volume: number) {
+  return BUSINESS_ECONOMICS.tiers.find((t) => volume >= t.min && volume <= t.max) ?? BUSINESS_ECONOMICS.tiers[0];
+}
+
+function getPartnerRate(volume: number): number {
+  return getPartnerTier(volume).rate;
+}
+
+function calculateEarningsRange(volume: number): { low: number; high: number } {
+  const rate = getPartnerRate(volume);
+  const lowAvg = calculateAverageMembershipValue(BUSINESS_ECONOMICS.mixes.conservative);
+  const highAvg = calculateAverageMembershipValue(BUSINESS_ECONOMICS.mixes.higherValue);
+  return { low: volume * lowAvg * rate, high: volume * highAvg * rate };
+}
+
 type Pkg = {
   name: string;
   annual?: { price: number; earnings: number };
@@ -98,6 +141,7 @@ function App() {
   const [paymentType, setPaymentType] = useState<PaymentType>('annual');
   const [conversions, setConversions] = useState<number[]>([0, 0, 0, 0, 0, 0, 0]);
   const [partnerMode, setPartnerMode] = useState<PartnerMode>('creator');
+  const [businessVolume, setBusinessVolume] = useState<number>(1000);
 
   const visiblePackages = packages.filter((pkg) => paymentType === 'annual' || pkg.lifetime !== undefined);
   const visibleIndices = packages.map((pkg, i) => i).filter((i) => paymentType === 'annual' || packages[i].lifetime !== undefined);
@@ -298,29 +342,64 @@ function App() {
               </div>
 
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
-                <p className="partner-lead">Earn margin from every conversion.</p>
-                <p className="partner-sub">Start at [XX%]. Higher rates are available for higher volumes.</p>
+                <h3 className="biz-headline">Bring more memberships. Unlock better partner economics.</h3>
+                <p className="biz-sub">Partner economics can scale with the volume you bring.</p>
 
-                <div className="business-tiers">
-                  <div className="business-tier">
-                    <span className="business-tier-label">Standard</span>
-                    <div className="business-tier-rate">[XX%]</div>
-                    <span className="business-tier-range">[Volume range]</span>
-                  </div>
-                  <div className="business-tier">
-                    <span className="business-tier-label">Growth</span>
-                    <div className="business-tier-rate">[XX%]</div>
-                    <span className="business-tier-range">[Volume range]</span>
-                  </div>
-                  <div className="business-tier">
-                    <span className="business-tier-label">Scale</span>
-                    <div className="business-tier-rate">[XX%]</div>
-                    <span className="business-tier-range">[Volume range]</span>
+                <div className="biz-progression">
+                  <div className="biz-progression-track">
+                    {BUSINESS_ECONOMICS.tiers.map((tier, i) => {
+                      const isActive = businessVolume >= tier.min && businessVolume <= tier.max;
+                      const volumeLabel = tier.min === 0 ? 'Under 5,000' : tier.max === Infinity ? '25,000+' : `${tier.min.toLocaleString()}–${tier.max.toLocaleString()}`;
+                      return (
+                        <div key={i} className={`biz-tier ${isActive ? 'biz-tier-active' : ''}`}>
+                          <span className="biz-tier-rate">{Math.round(tier.rate * 100)}%</span>
+                          <span className="biz-tier-volume">{volumeLabel}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <a className="calculator-cta business-cta" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={15} /></a>
-                <small className="business-disclaimer">Placeholder values shown. Final commercial terms, rates, and volume thresholds to be confirmed.</small>
+                <div className="biz-explorer">
+                  <span className="biz-explorer-label">What could your volume be worth?</span>
+                  <div className="biz-volume-options">
+                    {BUSINESS_ECONOMICS.volumePresets.map((vol) => (
+                      <button
+                        key={vol}
+                        className={`biz-volume-btn ${businessVolume === vol ? 'biz-volume-btn-active' : ''}`}
+                        onClick={() => setBusinessVolume(vol)}
+                        aria-pressed={businessVolume === vol}
+                      >{vol.toLocaleString()}</button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="biz-result">
+                  <div className="biz-result-row">
+                    <span className="biz-result-label">Qualifying memberships</span>
+                    <span className="biz-result-value">{businessVolume.toLocaleString()}</span>
+                  </div>
+                  <div className="biz-result-row">
+                    <span className="biz-result-label">Illustrative partner rate</span>
+                    <span className="biz-result-value">{Math.round(getPartnerRate(businessVolume) * 100)}%</span>
+                  </div>
+                  <div className="biz-result-earnings">
+                    <span className="biz-result-earnings-label">Estimated partner earnings</span>
+                    {(() => {
+                      const range = calculateEarningsRange(businessVolume);
+                      return (
+                        <strong className="biz-result-earnings-value">
+                          ${range.low.toLocaleString('en-US', { maximumFractionDigits: 0 })}–${range.high.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                        </strong>
+                      );
+                    })()}
+                  </div>
+                  <p className="biz-disclosure">Illustrative only. Actual earnings vary based on membership mix, qualifying conversions, and applicable partner terms.</p>
+                </div>
+
+                <div className="biz-capabilities">
+                  White-label storefront <span className="biz-cap-dot">·</span> Tracking &amp; attribution <span className="biz-cap-dot">·</span> Payouts handled
+                </div>
               </div>
             </div>
           </div>
