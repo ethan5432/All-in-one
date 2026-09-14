@@ -1666,7 +1666,6 @@ h1 em { color: var(--red); font-style: normal; }
 /* Entrance animations */
 .network-node {
   opacity: 0;
-  transform: translateY(12px);
   animation: networkNodeIn 0.6s ease-out forwards;
 }
 .network-line {
