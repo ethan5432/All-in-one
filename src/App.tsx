@@ -29,6 +29,9 @@ const BUSINESS_ECONOMICS = {
     { min: 25000, max: Infinity, rate: 0.45 },
   ],
   volumePresets: [100, 500, 1000, 5000, 10000],
+  volumeMin: 100,
+  volumeMax: 25000,
+  volumeStep: 100,
 } as const;
 
 type MixKey = keyof typeof BUSINESS_ECONOMICS.mixes;
@@ -362,15 +365,23 @@ function App() {
 
                 <div className="biz-explorer">
                   <span className="biz-explorer-label">What could your volume be worth?</span>
-                  <div className="biz-volume-options">
-                    {BUSINESS_ECONOMICS.volumePresets.map((vol) => (
-                      <button
-                        key={vol}
-                        className={`biz-volume-btn ${businessVolume === vol ? 'biz-volume-btn-active' : ''}`}
-                        onClick={() => setBusinessVolume(vol)}
-                        aria-pressed={businessVolume === vol}
-                      >{vol.toLocaleString()}</button>
-                    ))}
+                  <div className="biz-slider-wrap">
+                    <div className="biz-slider-ticks">
+                      {[100, 500, 1000, 5000, 10000, 25000].map((tick) => (
+                        <span key={tick} className="biz-slider-tick" onClick={() => setBusinessVolume(tick)}>{tick.toLocaleString()}</span>
+                      ))}
+                    </div>
+                    <input
+                      type="range"
+                      className="biz-slider"
+                      min={BUSINESS_ECONOMICS.volumeMin}
+                      max={BUSINESS_ECONOMICS.volumeMax}
+                      step={BUSINESS_ECONOMICS.volumeStep}
+                      value={businessVolume}
+                      onChange={(e) => setBusinessVolume(parseInt(e.target.value))}
+                      aria-label="Qualifying membership volume"
+                    />
+                    <div className="biz-slider-value">{businessVolume.toLocaleString()} memberships</div>
                   </div>
                 </div>
 

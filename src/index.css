@@ -598,31 +598,65 @@ h1 em { color: var(--red); font-style: normal; }
   font-weight: 700;
   letter-spacing: -.01em;
 }
-.biz-volume-options {
-  display: flex;
-  gap: 0;
-  border: 1px solid #E6E1D8;
-  border-radius: 10px;
-  overflow: hidden;
-  width: fit-content;
+.biz-slider-wrap {
+  position: relative;
+  padding-top: 28px;
 }
-.biz-volume-btn {
-  padding: 12px 24px;
-  border: none;
-  border-right: 1px solid #E6E1D8;
-  color: #4A4D55;
-  background: #FFFFFF;
-  font-family: inherit;
+.biz-slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+.biz-slider-tick {
+  color: #6B6E76;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .15s;
+  user-select: none;
+}
+.biz-slider-tick:hover { color: #18191D; }
+.biz-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #E6E1D8;
+  outline: none;
+  cursor: pointer;
+}
+.biz-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E1062C;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(225, 6, 44, 0.3);
+  cursor: pointer;
+  transition: box-shadow .15s;
+}
+.biz-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 2px 12px rgba(225, 6, 44, 0.45);
+}
+.biz-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E1062C;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(225, 6, 44, 0.3);
+  cursor: pointer;
+}
+.biz-slider-value {
+  margin-top: 14px;
+  color: #18191D;
   font-size: 15px;
   font-weight: 700;
-  cursor: pointer;
-  transition: background .15s, color .15s;
-}
-.biz-volume-btn:last-child { border-right: none; }
-.biz-volume-btn:hover { background: #F6F3EE; }
-.biz-volume-btn-active {
-  color: #E1062C;
-  background: rgba(225, 6, 44, 0.05);
+  letter-spacing: -.01em;
 }
 
 /* Result */
@@ -704,8 +738,7 @@ h1 em { color: var(--red); font-style: normal; }
   .biz-tier { padding: 20px 4px 18px; }
   .biz-tier-rate { font-size: 22px; }
   .biz-tier-volume { font-size: 10px; }
-  .biz-volume-options { width: 100%; }
-  .biz-volume-btn { flex: 1; padding: 12px 8px; font-size: 14px; }
+  .biz-slider-tick { font-size: 9px; }
   .biz-result { padding: 8px 20px; }
 }
 
