@@ -271,8 +271,6 @@ function App() {
 
               <div className={partnerMode === 'creator' ? 'partner-state partner-state-active' : 'partner-state'}>
                 <p className="partner-lead">Earn from the people you reach.</p>
-                <p className="partner-sub">Earn [XX%] on qualifying membership conversions you drive.</p>
-
                 <div className="pricing-grid">
                   {visiblePackages.map((pkg) => (
                     <article key={pkg.name} className="pricing-card">

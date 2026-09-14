@@ -554,14 +554,14 @@ h1 em { color: var(--red); font-style: normal; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 28px 8px 24px;
+  gap: 6px;
+  padding: 20px 8px 18px;
   border-right: 1px solid #E6E1D8;
   transition: background .2s;
 }
 .biz-tier:last-child { border-right: none; }
 .biz-tier-rate {
-  font-size: clamp(24px, 2.4vw, 32px);
+  font-size: clamp(22px, 2.1vw, 29px);
   font-weight: 800;
   letter-spacing: -.04em;
   color: #18191D;
@@ -569,7 +569,7 @@ h1 em { color: var(--red); font-style: normal; }
   transition: color .2s;
 }
 .biz-tier-volume {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: #6B6E76;
   letter-spacing: 0;
@@ -734,8 +734,8 @@ h1 em { color: var(--red); font-style: normal; }
 
 /* Responsive */
 @media (max-width: 700px) {
-  .biz-tier { padding: 20px 4px 18px; }
-  .biz-tier-rate { font-size: 22px; }
+  .biz-tier { padding: 16px 4px 14px; }
+  .biz-tier-rate { font-size: 20px; }
   .biz-tier-volume { font-size: 10px; }
   .biz-slider-tick { font-size: 9px; }
   .biz-result { padding: 8px 20px; }
