@@ -296,7 +296,6 @@ function App() {
 
             <div className="partner-right reveal">
               <h2 className="partner-earn-heading">HOW PARTNERS EARN</h2>
-              <p className="partner-earn-sub">Bring more memberships. Earn more.</p>
               <p className="partner-earn-support">Choose your partner type and see what qualifying membership conversions could earn.</p>
 
               <div className="partner-mode-toggle">
@@ -313,7 +312,6 @@ function App() {
               </div>
 
               <div className={partnerMode === 'creator' ? 'partner-state partner-state-active' : 'partner-state'}>
-                <p className="partner-lead">Earn from the people you reach.</p>
                 <p className="partner-sub">Earn 50% on qualifying membership conversions you drive.</p>
 
                 <div className="calc-calculator">
@@ -388,7 +386,6 @@ function App() {
               </div>
 
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
-                <h3 className="biz-headline">Bring more memberships. Unlock better partner economics.</h3>
                 <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
 
                 <div className="biz-progression">
