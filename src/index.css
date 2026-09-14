@@ -1655,18 +1655,18 @@ h1 em { color: var(--red); font-style: normal; }
 .network-section { background: var(--bg); padding: 112px 0; }
 .network-grid {
   display: grid;
-  grid-template-columns: 64% 36%;
-  gap: 48px;
+  grid-template-columns: 68% 32%;
+  gap: 56px;
   align-items: center;
 }
 .network-diagram-col { min-width: 0; }
 .network-diagram {
   width: 100%;
-  max-width: 760px;
+  max-width: 860px;
   height: auto;
   display: block;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Entrance animations */
@@ -1697,7 +1697,7 @@ h1 em { color: var(--red); font-style: normal; }
 }
 
 /* Copy column */
-.network-copy-col { padding-left: 8px; }
+.network-copy-col { padding-left: 16px; }
 .network-heading {
   margin: 0 0 20px;
   font-size: clamp(28px, 3.2vw, 40px);
