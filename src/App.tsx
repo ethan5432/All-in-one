@@ -9,70 +9,95 @@ import {
   X,
 } from 'lucide-react';
 
-type PaymentType = 'annual' | 'lifetime';
+type PaymentType = 'monthly' | 'annual' | 'lifetime';
 type PartnerMode = 'creator' | 'business';
 
-const BUSINESS_ECONOMICS = {
-  memberships: {
-    individual: 149,
-    family: 399,
-    premium: 999,
-  },
-  mixes: {
-    conservative: { individual: 0.70, family: 0.25, premium: 0.05 },
-    higherValue: { individual: 0.50, family: 0.35, premium: 0.15 },
-  },
-  tiers: [
-    { min: 0, max: 4999, rate: 0.30 },
-    { min: 5000, max: 9999, rate: 0.35 },
-    { min: 10000, max: 24999, rate: 0.40 },
-    { min: 25000, max: Infinity, rate: 0.45 },
-  ],
-  volumePresets: [100, 500, 1000, 5000, 10000],
-  volumeMin: 100,
-  volumeMax: 25000,
-  volumeStep: 100,
+const CREATOR_RATE = 0.50;
+
+const MEMBERSHIP_PRICING = {
+  individual:             { monthly: 4.99,  annual: 49,  lifetime: 99  },
+  individualPlus:         { monthly: 9.99,  annual: 99,  lifetime: 199 },
+  family:                 { monthly: 9.99,  annual: 99,  lifetime: 199 },
+  familyPlus:             { monthly: 19.99, annual: 200, lifetime: 399 },
+  careCircle:             { monthly: 29.99, annual: 300, lifetime: 599 },
+  parentsRetirement:      { monthly: 7.99,  annual: 79,  lifetime: 159 },
+  parentsRetirementPlus:  { monthly: 14.99, annual: 149, lifetime: 299 },
+  under26Regular:         { monthly: 4.99,  annual: 49,  lifetime: undefined as number | undefined },
+  under26Plus:            { monthly: 9.99,  annual: 99,  lifetime: undefined as number | undefined },
 } as const;
 
-type MixKey = keyof typeof BUSINESS_ECONOMICS.mixes;
+type MembershipKey = keyof typeof MEMBERSHIP_PRICING;
 
-type Mix = typeof BUSINESS_ECONOMICS.mixes[MixKey];
+const MEMBERSHIP_DISPLAY: { key: MembershipKey; name: string }[] = [
+  { key: 'individual',            name: 'Individual' },
+  { key: 'individualPlus',        name: 'Individual Plus' },
+  { key: 'family',                name: 'Family' },
+  { key: 'familyPlus',            name: 'Family Plus' },
+  { key: 'careCircle',            name: 'Care Circle' },
+  { key: 'parentsRetirement',     name: 'Parents & Retirement' },
+  { key: 'parentsRetirementPlus', name: 'Parents & Retirement Plus' },
+  { key: 'under26Regular',        name: 'Under 26 Regular' },
+  { key: 'under26Plus',           name: 'Under 26 Plus' },
+];
 
-function calculateAverageMembershipValue(mix: Mix): number {
-  const m = BUSINESS_ECONOMICS.memberships;
-  return mix.individual * m.individual + mix.family * m.family + mix.premium * m.premium;
-}
+const BUSINESS_TIERS = [
+  { threshold: 0,     rate: 0.40, label: 'Under 5,000' },
+  { threshold: 5000,  rate: 0.45, label: '5,000–9,999' },
+  { threshold: 10000, rate: 0.50, label: '10,000–24,999' },
+  { threshold: 25000, rate: 0.55, label: '25,000+' },
+] as const;
 
-function getPartnerTier(volume: number) {
-  return BUSINESS_ECONOMICS.tiers.find((t) => volume >= t.min && volume <= t.max) ?? BUSINESS_ECONOMICS.tiers[0];
-}
+const VOLUME_PRESETS = [100, 500, 1000, 5000, 10000, 25000];
 
-function getPartnerRate(volume: number): number {
-  return getPartnerTier(volume).rate;
-}
-
-function calculateEarningsRange(volume: number): { low: number; high: number } {
-  const rate = getPartnerRate(volume);
-  const lowAvg = calculateAverageMembershipValue(BUSINESS_ECONOMICS.mixes.conservative);
-  const highAvg = calculateAverageMembershipValue(BUSINESS_ECONOMICS.mixes.higherValue);
-  return { low: volume * lowAvg * rate, high: volume * highAvg * rate };
-}
-
-type Pkg = {
-  name: string;
-  annual?: { price: number; earnings: number };
-  lifetime?: { price: number; earnings: number };
+const PRICE_LABELS: Record<PaymentType, string> = {
+  monthly: 'monthly',
+  annual: 'annual',
+  lifetime: 'lifetime',
 };
 
-const packages: Pkg[] = [
-  { name: 'Individual', annual: { price: 149, earnings: 74.50 }, lifetime: { price: 249, earnings: 124.50 } },
-  { name: 'Family', annual: { price: 399, earnings: 199.50 }, lifetime: { price: 599, earnings: 299.50 } },
-  { name: 'Family Plus', annual: { price: 799, earnings: 399.50 }, lifetime: { price: 999, earnings: 499.50 } },
-  { name: 'Care Circle', annual: { price: 1099, earnings: 549.50 }, lifetime: { price: 1499, earnings: 749.50 } },
-  { name: 'Parents & Retirement', annual: { price: 299, earnings: 149.50 }, lifetime: { price: 449, earnings: 224.50 } },
-  { name: 'Under 26 Regular', annual: { price: 209, earnings: 104.50 } },
-  { name: 'Under 26 Gold', annual: { price: 299, earnings: 149.50 } },
-];
+function getPrice(key: MembershipKey, payment: PaymentType): number | undefined {
+  return MEMBERSHIP_PRICING[key][payment];
+}
+
+function isCommissionable(payment: PaymentType): boolean {
+  return payment === 'annual' || payment === 'lifetime';
+}
+
+function getEarnings(key: MembershipKey, payment: PaymentType): number {
+  if (!isCommissionable(payment)) return 0;
+  const price = getPrice(key, payment);
+  if (price === undefined) return 0;
+  return price * CREATOR_RATE;
+}
+
+function getBusinessRate(volume: number): number {
+  let rate = BUSINESS_TIERS[0].rate;
+  for (const tier of BUSINESS_TIERS) {
+    if (volume >= tier.threshold) rate = tier.rate;
+  }
+  return rate;
+}
+
+const BUSINESS_DEFAULT_MIX: Record<MembershipKey, number> = {
+  individual: 0.10,
+  individualPlus: 0.10,
+  family: 0.30,
+  familyPlus: 0.25,
+  careCircle: 0.15,
+  parentsRetirement: 0.05,
+  parentsRetirementPlus: 0.05,
+  under26Regular: 0,
+  under26Plus: 0,
+};
+
+function getAveragePrice(mix: Record<MembershipKey, number>, payment: PaymentType): number {
+  let total = 0;
+  for (const m of MEMBERSHIP_DISPLAY) {
+    const price = getPrice(m.key, payment);
+    if (price !== undefined) total += mix[m.key] * price;
+  }
+  return total;
+}
 
 const faqs = [
   ['What is Careverse?', 'Careverse is a care-navigation platform. Its free AI assistant, Lidia, helps people find, compare and organize care and benefits. Paid Careverse memberships add a funded care allowance and member pricing on participating services. Careverse is a benefits and navigation service — not health insurance, not medical care, and not a medical provider.'],
@@ -142,24 +167,40 @@ function LidiaConversation() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [paymentType, setPaymentType] = useState<PaymentType>('annual');
-  const [conversions, setConversions] = useState<number[]>([0, 0, 0, 0, 0, 0, 0]);
+  const [conversions, setConversions] = useState<number[]>([1, 0, 1, 1, 0, 0, 0, 0, 0]);
   const [partnerMode, setPartnerMode] = useState<PartnerMode>('creator');
   const [businessVolume, setBusinessVolume] = useState<number>(1000);
+  const [businessMix, setBusinessMix] = useState<Record<MembershipKey, number>>({ ...BUSINESS_DEFAULT_MIX });
+  const [bizPaymentType, setBizPaymentType] = useState<PaymentType>('annual');
 
-  const visiblePackages = packages.filter((pkg) => paymentType === 'annual' || pkg.lifetime !== undefined);
-  const visibleIndices = packages.map((pkg, i) => i).filter((i) => paymentType === 'annual' || packages[i].lifetime !== undefined);
+  const creatorCanEarn = isCommissionable(paymentType);
+  const visibleMemberships = MEMBERSHIP_DISPLAY.filter((m) => getPrice(m.key, paymentType) !== undefined);
 
-  const getEarnings = (pkg: Pkg) => (paymentType === 'annual' ? pkg.annual!.earnings : pkg.lifetime!.earnings);
-  const getPrice = (pkg: Pkg) => (paymentType === 'annual' ? pkg.annual!.price : pkg.lifetime!.price);
+  const creatorEarnings = creatorCanEarn
+    ? MEMBERSHIP_DISPLAY.reduce((sum, m, i) => sum + getEarnings(m.key, paymentType) * conversions[i], 0)
+    : 0;
+  const creatorQualifying = creatorCanEarn
+    ? MEMBERSHIP_DISPLAY.reduce((sum, m, i) => sum + conversions[i], 0)
+    : 0;
 
-  const totalEarnings = visibleIndices.reduce((sum, i) => sum + getEarnings(packages[i]) * conversions[i], 0);
-  const activeBreakdown = visibleIndices
-    .map((i) => ({ name: packages[i].name, count: conversions[i], subtotal: getEarnings(packages[i]) * conversions[i] }))
-    .filter((item) => item.count > 0);
+  const creatorBreakdown = creatorCanEarn
+    ? MEMBERSHIP_DISPLAY.map((m, i) => ({ name: m.name, count: conversions[i], subtotal: getEarnings(m.key, paymentType) * conversions[i] }))
+        .filter((item) => item.count > 0)
+    : [];
+
   const updateConversion = (index: number, value: number) => {
     const next = [...conversions];
     next[index] = Math.max(0, isNaN(value) ? 0 : value);
     setConversions(next);
+  };
+
+  const bizCanEarn = isCommissionable(bizPaymentType);
+  const bizRate = getBusinessRate(businessVolume);
+  const bizAvgPrice = getAveragePrice(businessMix, bizPaymentType);
+  const bizEarnings = bizCanEarn ? businessVolume * bizAvgPrice * bizRate : 0;
+
+  const updateMix = (key: MembershipKey, value: number) => {
+    setBusinessMix((prev) => ({ ...prev, [key]: Math.max(0, Math.min(100, isNaN(value) ? 0 : value)) }));
   };
 
   return (
@@ -255,6 +296,8 @@ function App() {
 
             <div className="partner-right reveal">
               <h2 className="partner-earn-heading">HOW PARTNERS EARN</h2>
+              <p className="partner-earn-sub">Bring more memberships. Earn more.</p>
+              <p className="partner-earn-support">Choose your partner type and see what qualifying membership conversions could earn.</p>
 
               <div className="partner-mode-toggle">
                 <button
@@ -271,90 +314,92 @@ function App() {
 
               <div className={partnerMode === 'creator' ? 'partner-state partner-state-active' : 'partner-state'}>
                 <p className="partner-lead">Earn from the people you reach.</p>
-                <div className="pricing-grid">
-                  {visiblePackages.map((pkg) => (
-                    <article key={pkg.name} className="pricing-card">
-                      <span className="pricing-card-label">{pkg.name}</span>
-                      <div className="pricing-price"><span className="pricing-amount">${getPrice(pkg)}</span></div>
-                      <span className="pricing-earnings">You earn ${getEarnings(pkg).toFixed(2)}</span>
-                    </article>
-                  ))}
-                </div>
+                <p className="partner-sub">Earn 50% on qualifying membership conversions you drive.</p>
 
-                <div className="calculator">
-                  <div className="calculator-controls">
-                    <div className="calc-toggle">
-                      <button className={paymentType === 'annual' ? 'calc-toggle-btn active' : 'calc-toggle-btn'} onClick={() => setPaymentType('annual')} aria-pressed={paymentType === 'annual'}>Annual</button>
-                      <button className={paymentType === 'lifetime' ? 'calc-toggle-btn active' : 'calc-toggle-btn'} onClick={() => setPaymentType('lifetime')} aria-pressed={paymentType === 'lifetime'}>Lifetime</button>
+                <div className="calc-calculator">
+                  <div className="calc-controls-col">
+                    <div className="calc-billing-toggle">
+                      <button className={paymentType === 'monthly' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setPaymentType('monthly')} aria-pressed={paymentType === 'monthly'}>Monthly</button>
+                      <button className={paymentType === 'annual' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setPaymentType('annual')} aria-pressed={paymentType === 'annual'}>Annual</button>
+                      <button className={paymentType === 'lifetime' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setPaymentType('lifetime')} aria-pressed={paymentType === 'lifetime'}>Lifetime</button>
                     </div>
-                    <span className="calculator-step-label">Model your conversions</span>
-                    {packages.map((pkg, index) => {
-                      const isAvailable = paymentType === 'annual' || pkg.lifetime !== undefined;
-                      if (!isAvailable) {
+
+                    <div className="calc-membership-list">
+                      {MEMBERSHIP_DISPLAY.map((m, i) => {
+                        const price = getPrice(m.key, paymentType);
+                        const earnings = getEarnings(m.key, paymentType);
+                        const isAvailable = price !== undefined;
+                        if (!isAvailable) {
+                          return (
+                            <div key={m.name} className="calc-row calc-row-disabled">
+                              <div className="calc-row-info">
+                                <span className="calc-row-name">{m.name}</span>
+                                <span className="calc-row-rate calc-row-rate-na">Not available {PRICE_LABELS[paymentType]}</span>
+                              </div>
+                            </div>
+                          );
+                        }
                         return (
-                          <div key={pkg.name} className="conv-row conv-row-disabled">
-                            <div className="conv-row-info">
-                              <span className="conv-row-name">{pkg.name}</span>
-                              <span className="conv-row-rate conv-row-rate-disabled">Annual only</span>
+                          <div key={m.name} className="calc-row">
+                            <div className="calc-row-info">
+                              <span className="calc-row-name">{m.name}</span>
+                              <span className="calc-row-rate">${price.toLocaleString('en-US', { minimumFractionDigits: price % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 })} {PRICE_LABELS[paymentType]}{creatorCanEarn ? ` · ${earnings.toFixed(2)} per conversion` : ''}</span>
+                            </div>
+                            <div className="calc-stepper">
+                              <button onClick={() => updateConversion(i, conversions[i] - 1)} aria-label={`Decrease ${m.name} conversions`}><Minus size={14} /></button>
+                              <input type="number" min={0} value={conversions[i]} onChange={(e) => updateConversion(i, parseInt(e.target.value))} aria-label={`${m.name} conversions`} />
+                              <button onClick={() => updateConversion(i, conversions[i] + 1)} aria-label={`Increase ${m.name} conversions`}><Plus size={14} /></button>
                             </div>
                           </div>
                         );
-                      }
-                      return (
-                        <div key={pkg.name} className="conv-row">
-                          <div className="conv-row-info">
-                            <span className="conv-row-name">{pkg.name}</span>
-                            <span className="conv-row-rate">${getEarnings(pkg).toFixed(2)} per conversion</span>
-                          </div>
-                          <div className="conv-stepper">
-                            <button onClick={() => updateConversion(index, conversions[index] - 1)} aria-label={`Decrease ${pkg.name} conversions`}><Minus size={14} /></button>
-                            <input type="number" min={0} value={conversions[index]} onChange={(e) => updateConversion(index, parseInt(e.target.value))} aria-label={`${pkg.name} conversions`} />
-                            <button onClick={() => updateConversion(index, conversions[index] + 1)} aria-label={`Increase ${pkg.name} conversions`}><Plus size={14} /></button>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <p className="calculator-note">Mix conversions across any combination of packages.</p>
+                      })}
+                    </div>
+                    {!creatorCanEarn && (
+                      <p className="calc-monthly-note">Monthly memberships are currently not commissionable.</p>
+                    )}
+                    <p className="calc-mix-note">Mix conversions across any combination of memberships.</p>
                   </div>
-                  <div className="calculator-result">
-                    <span className="result-eyebrow">Estimated one-time earnings</span>
-                    <div className="result-main"><small>Estimated one-time earnings</small><strong>${totalEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
-                    {activeBreakdown.length > 0 ? (
-                      <div className="result-breakdown">
-                        {activeBreakdown.map(({ name, count, subtotal }) => (
-                          <div key={name} className="breakdown-row">
+
+                  <div className="calc-earnings-panel">
+                    <span className="calc-earnings-eyebrow">Estimated partner earnings</span>
+                    <div className="calc-earnings-amount">${creatorEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                    <div className="calc-earnings-rate"><span className="calc-red-accent">50%</span> commission</div>
+                    <div className="calc-earnings-count">{creatorQualifying} qualifying membership{creatorQualifying !== 1 ? 's' : ''}</div>
+
+                    {creatorBreakdown.length > 0 ? (
+                      <div className="calc-breakdown">
+                        {creatorBreakdown.map(({ name, count, subtotal }) => (
+                          <div key={name} className="calc-breakdown-row">
                             <span>{count} {name}</span>
                             <strong>${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
                           </div>
                         ))}
-                        <div className="breakdown-total">
-                          <span>Total</span>
-                          <strong>${totalEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-                        </div>
                       </div>
                     ) : (
-                      <div className="result-breakdown"><p className="breakdown-empty">Set conversions above to see your breakdown.</p></div>
+                      <div className="calc-breakdown calc-breakdown-empty-state">
+                        <p>{creatorCanEarn ? 'Set conversions to see your breakdown.' : 'Monthly memberships are not commissionable.'}</p>
+                      </div>
                     )}
-                    <div className="result-commission-badge">50% commission · annual &amp; lifetime</div>
-                    <a className="calculator-cta" href="https://careverse-creator-application.vercel.app/">Apply to creator network <ArrowRight size={15} /></a>
-                    <small className="result-disclaimer">For example purposes only. Commission applies to qualifying annual and lifetime membership conversions; monthly memberships are not commissionable. Actual earnings vary by conversions and applicable program terms.</small>
+
+                    <a className="calc-cta-btn" href="https://careverse-creator-application.vercel.app/">Apply to creator network <ArrowRight size={15} /></a>
+                    <p className="calc-disclaimer">Illustrative only. Actual earnings depend on qualifying conversions, membership mix, applicable partner terms, refunds, cancellations and any rate changes communicated by Careverse.{!creatorCanEarn ? ' Monthly memberships are currently not commissionable.' : ''}</p>
                   </div>
                 </div>
               </div>
 
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
                 <h3 className="biz-headline">Bring more memberships. Unlock better partner economics.</h3>
-                <p className="biz-sub">Partner economics can scale with the volume you bring.</p>
+                <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
 
                 <div className="biz-progression">
                   <div className="biz-progression-track">
-                    {BUSINESS_ECONOMICS.tiers.map((tier, i) => {
-                      const isActive = businessVolume >= tier.min && businessVolume <= tier.max;
-                      const volumeLabel = tier.min === 0 ? 'Under 5,000' : tier.max === Infinity ? '25,000+' : `${tier.min.toLocaleString()}–${tier.max.toLocaleString()}`;
+                    {BUSINESS_TIERS.map((tier, i) => {
+                      const isActive = businessVolume >= tier.threshold &&
+                        (i === BUSINESS_TIERS.length - 1 || businessVolume < BUSINESS_TIERS[i + 1].threshold);
                       return (
                         <div key={i} className={`biz-tier ${isActive ? 'biz-tier-active' : ''}`}>
                           <span className="biz-tier-rate">{Math.round(tier.rate * 100)}%</span>
-                          <span className="biz-tier-volume">{volumeLabel}</span>
+                          <span className="biz-tier-volume">{tier.label}</span>
                         </div>
                       );
                     })}
@@ -365,16 +410,16 @@ function App() {
                   <span className="biz-explorer-label">What could your volume be worth?</span>
                   <div className="biz-slider-wrap">
                     <div className="biz-slider-ticks">
-                      {[100, 500, 1000, 5000, 10000, 25000].map((tick) => (
-                        <span key={tick} className="biz-slider-tick" onClick={() => setBusinessVolume(tick)}>{tick.toLocaleString()}</span>
+                      {VOLUME_PRESETS.map((tick) => (
+                        <span key={tick} className={`biz-slider-tick ${businessVolume === tick ? 'biz-slider-tick-active' : ''}`} onClick={() => setBusinessVolume(tick)}>{tick.toLocaleString()}</span>
                       ))}
                     </div>
                     <input
                       type="range"
                       className="biz-slider"
-                      min={BUSINESS_ECONOMICS.volumeMin}
-                      max={BUSINESS_ECONOMICS.volumeMax}
-                      step={BUSINESS_ECONOMICS.volumeStep}
+                      min={100}
+                      max={25000}
+                      step={100}
                       value={businessVolume}
                       onChange={(e) => setBusinessVolume(parseInt(e.target.value))}
                       aria-label="Qualifying membership volume"
@@ -383,27 +428,54 @@ function App() {
                   </div>
                 </div>
 
-                <div className="biz-result">
-                  <div className="biz-result-row">
-                    <span className="biz-result-label">Qualifying memberships</span>
-                    <span className="biz-result-value">{businessVolume.toLocaleString()}</span>
+                <div className="calc-calculator calc-calculator-biz">
+                  <div className="calc-controls-col">
+                    <div className="calc-billing-toggle">
+                      <button className={bizPaymentType === 'monthly' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setBizPaymentType('monthly')} aria-pressed={bizPaymentType === 'monthly'}>Monthly</button>
+                      <button className={bizPaymentType === 'annual' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setBizPaymentType('annual')} aria-pressed={bizPaymentType === 'annual'}>Annual</button>
+                      <button className={bizPaymentType === 'lifetime' ? 'calc-billing-btn active' : 'calc-billing-btn'} onClick={() => setBizPaymentType('lifetime')} aria-pressed={bizPaymentType === 'lifetime'}>Lifetime</button>
+                    </div>
+
+                    <span className="calculator-step-label">Membership mix</span>
+                    <div className="biz-mix-list">
+                      {MEMBERSHIP_DISPLAY.map((m) => {
+                        const price = getPrice(m.key, bizPaymentType);
+                        if (price === undefined) return null;
+                        return (
+                          <div key={m.key} className="biz-mix-row">
+                            <div className="biz-mix-info">
+                              <span className="biz-mix-name">{m.name}</span>
+                              <span className="biz-mix-price">${price.toLocaleString('en-US', { minimumFractionDigits: price % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 })} {PRICE_LABELS[bizPaymentType]}</span>
+                            </div>
+                            <div className="biz-mix-control">
+                              <input
+                                type="number"
+                                min={0}
+                                max={100}
+                                value={businessMix[m.key]}
+                                onChange={(e) => updateMix(m.key, parseFloat(e.target.value))}
+                                aria-label={`${m.name} mix percentage`}
+                              />
+                              <span className="biz-mix-pct">%</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {!bizCanEarn && (
+                      <p className="calc-monthly-note">Monthly memberships are currently not commissionable.</p>
+                    )}
                   </div>
-                  <div className="biz-result-row">
-                    <span className="biz-result-label">Illustrative partner rate</span>
-                    <span className="biz-result-value">{Math.round(getPartnerRate(businessVolume) * 100)}%</span>
+
+                  <div className="calc-earnings-panel">
+                    <span className="calc-earnings-eyebrow">Estimated partner earnings</span>
+                    <div className="calc-earnings-amount">${bizEarnings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                    <div className="calc-earnings-rate"><span className="calc-red-accent">{Math.round(bizRate * 100)}%</span> partner rate</div>
+                    <div className="calc-earnings-count">{businessVolume.toLocaleString()} qualifying memberships</div>
+
+                    <a className="calc-cta-btn" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={15} /></a>
+                    <p className="calc-disclaimer">Illustrative only. Actual earnings depend on qualifying conversions, membership mix, applicable partner terms, refunds, cancellations and any rate changes communicated by Careverse.{!bizCanEarn ? ' Monthly memberships are currently not commissionable.' : ''}</p>
                   </div>
-                  <div className="biz-result-earnings">
-                    <span className="biz-result-earnings-label">Estimated partner earnings</span>
-                    {(() => {
-                      const range = calculateEarningsRange(businessVolume);
-                      return (
-                        <strong className="biz-result-earnings-value">
-                          ${range.low.toLocaleString('en-US', { maximumFractionDigits: 0 })}–${range.high.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-                        </strong>
-                      );
-                    })()}
-                  </div>
-                  <p className="biz-disclosure">Illustrative only. Actual earnings vary based on membership mix, qualifying conversions, and applicable partner terms.</p>
                 </div>
 
                 <div className="biz-capabilities">
