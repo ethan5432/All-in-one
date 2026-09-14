@@ -1625,7 +1625,7 @@ h1 em { color: var(--red); font-style: normal; }
 }
 .faq-compliance-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .faq-compliance-item {
@@ -1705,34 +1705,6 @@ h1 em { color: var(--red); font-style: normal; }
   white-space: pre-line;
 }
 
-.faq-support-block {
-  margin-top: 32px;
-  padding: 24px 28px;
-  text-align: center;
-}
-.faq-support-title {
-  margin: 0 0 6px;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--text);
-}
-.faq-support-text {
-  margin: 0 0 14px;
-  color: var(--body);
-  font-size: 13px;
-  line-height: 1.5;
-}
-.faq-support-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--red);
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: color .22s ease;
-}
-.faq-support-link:hover { color: var(--text); }
 
 @media (max-width: 800px) {
   .faq-categories { grid-template-columns: 1fr; }
