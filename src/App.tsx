@@ -180,24 +180,27 @@ function LidiaConversation() {
 
       <div className="lidia-messages">
         <div className="lidia-msg-user fade-seq-1">
-          <p>I'm taking care of my mom. She fell ill and I don't know what to do.</p>
+          <p>My mom&rsquo;s doctor recommended she see a cardiologist, but I&rsquo;m not sure where to start.</p>
         </div>
         <div className="lidia-msg-lidia fade-seq-2">
-          <p>Let's take it one step at a time. Tell me what's going on, and I'll help you figure out where to start.</p>
+          <p>I can help you find one.</p>
         </div>
         <div className="lidia-msg-user fade-seq-3">
-          <p>She has a doctor but I feel like I'm trying to figure everything out myself.</p>
+          <p>I&rsquo;d like to find someone in her insurance network and compare a few options.</p>
         </div>
         <div className="lidia-msg-lidia fade-seq-4">
-          <p>You don't have to figure it all out at once. I can help you understand what she needs, find options, and organize the next steps — including working with the care she already has.</p>
+          <p>Absolutely. Here are a few options that fit what you&rsquo;re looking for.</p>
+        </div>
+        <div className="lidia-msg-lidia fade-seq-5">
+          <p>Would you like me to dig into one, schedule an appointment, or call one of the options?</p>
         </div>
       </div>
 
-      <div className="lidia-next-steps fade-seq-5">
+      <div className="lidia-next-steps fade-seq-6">
         <div className="lidia-steps-list">
-          <div className="lidia-step"><span className="lidia-step-text">Find a specialist</span></div>
-          <div className="lidia-step"><span className="lidia-step-text">Understand a bill</span></div>
-          <div className="lidia-step"><span className="lidia-step-text">Organize next steps</span></div>
+          <div className="lidia-step"><span className="lidia-step-text">Would you like me to dig into one?</span></div>
+          <div className="lidia-step"><span className="lidia-step-text">Would you like me to schedule an appointment?</span></div>
+          <div className="lidia-step"><span className="lidia-step-text">Would you like me to call one of the options?</span></div>
         </div>
       </div>
 
