@@ -1022,28 +1022,47 @@ h1 em { color: var(--red); font-style: normal; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(250, 238, 230, 0.7);
-  border: 1px solid rgba(242, 224, 212, 0.8);
+  background: rgba(250, 244, 252, 0.55);
+  border: 1px solid rgba(232, 208, 248, 0.5);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
 }
-.lidia-avatar-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.lidia-heart {
+.lidia-orb {
   position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #E1062C;
-  animation: lidiaHeartbeat 2.6s ease-in-out infinite;
-  transform-origin: center;
+  display: block;
+  width: 74%;
+  height: 74%;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 34% 25%, rgba(255, 247, 253, 0.98) 0 10%, rgba(255, 225, 244, 0.78) 25%, transparent 52%),
+    radial-gradient(circle at 70% 72%, rgba(197, 164, 246, 0.88), transparent 64%),
+    linear-gradient(145deg, #f8dce9 0%, #ead8f5 48%, #cdb7ed 100%);
+  border: 1px solid rgba(255, 218, 239, 0.92);
+  box-shadow:
+    inset -5px -6px 10px rgba(152, 119, 211, 0.18),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.58),
+    0 0 10px rgba(226, 184, 239, 0.28);
 }
-.lidia-heart svg { width: 24px; height: 24px; }
+.lidia-orb::before {
+  content: '';
+  position: absolute;
+  width: 44%;
+  height: 30%;
+  top: 13%;
+  left: 20%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.52);
+  filter: blur(3px);
+  transform: rotate(-22deg);
+}
+.lidia-orb::after {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
 
 .lidia-meta { display: flex; flex-direction: column; }
 .lidia-name {
@@ -1207,13 +1226,11 @@ h1 em { color: var(--red); font-style: normal; }
 }
 
 /* Lidia animations */
-@keyframes lidiaHeartbeat {
-  0%, 100% { transform: scale(1); }
-  14% { transform: scale(1.08); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.05); }
-  70% { transform: scale(1); }
+@keyframes lidiaOrbPulse {
+  0%, 100% { box-shadow: inset -5px -6px 10px rgba(152, 119, 211, 0.18), inset 4px 4px 8px rgba(255, 255, 255, 0.58), 0 0 10px rgba(226, 184, 239, 0.28); }
+  50% { box-shadow: inset -5px -6px 10px rgba(152, 119, 211, 0.22), inset 4px 4px 8px rgba(255, 255, 255, 0.58), 0 0 16px rgba(226, 184, 239, 0.45); }
 }
+.lidia-orb { animation: lidiaOrbPulse 3.2s ease-in-out infinite; }
 @keyframes lidiaFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1226,7 +1243,7 @@ h1 em { color: var(--red); font-style: normal; }
 .fade-seq-6 { animation: lidiaFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.65s both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .lidia-heart, .fade-seq-1, .fade-seq-2, .fade-seq-3, .fade-seq-4, .fade-seq-5, .fade-seq-6 {
+  .lidia-orb, .fade-seq-1, .fade-seq-2, .fade-seq-3, .fade-seq-4, .fade-seq-5, .fade-seq-6 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -1242,7 +1259,7 @@ h1 em { color: var(--red); font-style: normal; }
   .lidia-card { padding: 28px; }
   .lidia-header { gap: 14px; padding-bottom: 28px; }
   .lidia-avatar { width: 56px; height: 56px; }
-  .lidia-heart svg { width: 20px; height: 20px; }
+
   .lidia-name { font-size: 20px; }
   .lidia-messages { gap: 18px; padding: 28px 0; }
   .lidia-msg-user > p, .lidia-msg-lidia > p { font-size: 15px; padding: 14px 18px; }
@@ -1337,7 +1354,7 @@ h1 em { color: var(--red); font-style: normal; }
   height: 40px;
   border-radius: 50%;
 }
-.mini-lidia-avatar .lidia-heart svg { width: 16px; height: 16px; }
+
 .mini-lidia-name {
   color: #18191D;
   font-size: 15px;

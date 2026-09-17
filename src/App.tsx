@@ -152,21 +152,16 @@ const faqCategories: FaqCategory[] = [
   },
 ];
 
+function LidiaOrb() {
+  return <span className="lidia-orb" aria-hidden="true" />;
+}
+
 function LidiaConversation() {
   return (
     <div className="lidia-card">
       <header className="lidia-header">
         <div className="lidia-avatar">
-          <svg className="lidia-avatar-bg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="28" fill="#F8E5D8" fillOpacity="0.6" />
-            <path d="M32 6C44 6 56 16 56 31C56 46 45 56 31 56C17 56 8 45 8 32C8 18 19 6 32 6Z" fill="#EFCAB6" fillOpacity="0.55" />
-            <path d="M34 11C43 12 51 20 51 32C51 43 43 51 32 51C20 51 13 41 14 30C15 18 24 10 34 11Z" fill="#E6AE96" fillOpacity="0.45" />
-          </svg>
-          <div className="lidia-heart">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
-          </div>
+          <LidiaOrb />
         </div>
         <div className="lidia-meta">
           <h3 className="lidia-name">Lidia</h3>
@@ -265,16 +260,7 @@ function MiniLidiaChat({ user, lidia }: { user: string; lidia: string }) {
     <div className="mini-lidia">
       <div className="mini-lidia-header">
         <div className="lidia-avatar mini-lidia-avatar">
-          <svg className="lidia-avatar-bg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="28" fill="#F8E5D8" fillOpacity="0.6" />
-            <path d="M32 6C44 6 56 16 56 31C56 46 45 56 31 56C17 56 8 45 8 32C8 18 19 6 32 6Z" fill="#EFCAB6" fillOpacity="0.55" />
-            <path d="M34 11C43 12 51 20 51 32C51 43 43 51 32 51C20 51 13 41 14 30C15 18 24 10 34 11Z" fill="#E6AE96" fillOpacity="0.45" />
-          </svg>
-          <div className="lidia-heart">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
-          </div>
+          <LidiaOrb />
         </div>
         <span className="mini-lidia-name">Lidia</span>
       </div>
