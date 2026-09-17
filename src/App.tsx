@@ -628,21 +628,23 @@ function App() {
                 <p className="memberships-disclaimer">Careverse memberships are paid benefits programs, not health insurance or medical care. Benefits, eligibility and qualifying services vary by membership and applicable terms.</p>
               </div>
               <div className="memberships-text">
-                <h2 className="memberships-title">What you're <span className="memberships-red">offering</span> the people you serve</h2>
-                <p className="memberships-bridge">Careverse gives people another way to navigate and access care. Lidia helps them understand their options and find their next step, while optional memberships add benefits that can make care more accessible and affordable.</p>
-                <div className="memberships-sublabel">What people get with a Careverse membership</div>
-                <div className="memberships-rows">
-                  <div className="memberships-row">
-                    <div className="memberships-row-label">Money toward eligible care</div>
-                    <p className="memberships-row-body">Eligible memberships include a funded allowance that can be used toward qualifying care services and products.</p>
+                <h2 className="memberships-title">What you're <span className="memberships-red">offering</span> people</h2>
+                <p className="memberships-bridge">A simpler way to get care, with benefits that can help make it more accessible and affordable.</p>
+                <div className="memberships-points">
+                  <div className="memberships-point">
+                    <span className="memberships-point-num">01</span>
+                    <div className="memberships-point-label">Money toward eligible care</div>
+                    <p className="memberships-point-body">Memberships can include a funded allowance toward qualifying care services and products.</p>
                   </div>
-                  <div className="memberships-row">
-                    <div className="memberships-row-label">Member pricing on participating services</div>
-                    <p className="memberships-row-body">Members can access participating services and offers at member prices, with the member paying the provider for the service.</p>
+                  <div className="memberships-point">
+                    <span className="memberships-point-num">02</span>
+                    <div className="memberships-point-label">Member pricing</div>
+                    <p className="memberships-point-body">Access participating services and offers at member prices.</p>
                   </div>
-                  <div className="memberships-row">
-                    <div className="memberships-row-label">Benefits for different needs</div>
-                    <p className="memberships-row-body">Memberships are designed around different needs — from individual and family care to broader household needs.</p>
+                  <div className="memberships-point">
+                    <span className="memberships-point-num">03</span>
+                    <div className="memberships-point-label">Benefits built around different needs</div>
+                    <p className="memberships-point-body">Membership options are designed for different people, households, and care needs.</p>
                   </div>
                 </div>
               </div>
