@@ -538,7 +538,8 @@ function App() {
             <div className="problem-left reveal">
               <h2 className="problem-headline">MEET LIDIA</h2>
               <p className="problem-lede">Your free AI care assistant.</p>
-              <p className="problem-body">When you don't know what to do next, start with Lidia. She helps you navigate and manage your care, from understanding your options and insurance to finding the right providers and figuring out what to do next.</p>
+              <p className="problem-body">When you don't know what to do next, start with Lidia.</p>
+              <p className="problem-body">She helps you navigate and manage your care, from understanding your options and insurance to finding the right providers and figuring out what to do next.</p>
               <p className="problem-note">Just tell her what's going on.</p>
             </div>
             <div className="problem-right reveal">
