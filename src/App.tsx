@@ -183,24 +183,41 @@ function LidiaConversation() {
           <p>My mom&rsquo;s doctor recommended she see a cardiologist, but I&rsquo;m not sure where to start.</p>
         </div>
         <div className="lidia-msg-lidia fade-seq-2">
-          <p>I can help you find one.</p>
+          <p>I can help you find one in her network and compare your options.</p>
         </div>
         <div className="lidia-msg-user fade-seq-3">
           <p>I&rsquo;d like to find someone in her insurance network and compare a few options.</p>
         </div>
         <div className="lidia-msg-lidia fade-seq-4">
-          <p>Absolutely. Here are a few options that fit what you&rsquo;re looking for.</p>
+          <p>Here are a few options that fit what you&rsquo;re looking for.</p>
         </div>
         <div className="lidia-msg-lidia fade-seq-5">
-          <p>Would you like me to dig into one, schedule an appointment, or call one of the options?</p>
+          <div className="lidia-providers">
+            <div className="lidia-provider">
+              <div className="lidia-provider-info">
+                <span className="lidia-provider-name">Dr. Sarah Chen</span>
+                <span className="lidia-provider-specialty">Cardiology &middot; In network</span>
+              </div>
+              <span className="lidia-provider-verified">Verified</span>
+            </div>
+            <div className="lidia-provider">
+              <div className="lidia-provider-info">
+                <span className="lidia-provider-name">Dr. Michael Torres</span>
+                <span className="lidia-provider-specialty">Cardiology &middot; In network</span>
+              </div>
+              <span className="lidia-provider-verified">Verified</span>
+            </div>
+            <div className="lidia-provider">
+              <div className="lidia-provider-info">
+                <span className="lidia-provider-name">Dr. Aisha Patel</span>
+                <span className="lidia-provider-specialty">Cardiology &middot; In network</span>
+              </div>
+              <span className="lidia-provider-verified">Verified</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="lidia-next-steps fade-seq-6">
-        <div className="lidia-steps-list">
-          <div className="lidia-step"><span className="lidia-step-text">Would you like me to dig into one?</span></div>
-          <div className="lidia-step"><span className="lidia-step-text">Would you like me to schedule an appointment?</span></div>
-          <div className="lidia-step"><span className="lidia-step-text">Would you like me to call one of the options?</span></div>
+        <div className="lidia-msg-lidia fade-seq-6">
+          <p>Would you like me to dig into one, schedule an appointment, or call one of the options?</p>
         </div>
       </div>
 
