@@ -517,34 +517,18 @@ function App() {
 
         {/* 5 — Healthcare should feel easier */}
         <section className="section easier-section">
-          <div className="container">
+          <div className="container easier-content">
             <h2 className="easier-title reveal">Healthcare should feel easier.</h2>
-            <div className="easier-grid">
-              <div className="easier-col reveal reveal-delay-1">
-                <h3>Navigate what you have</h3>
-                <ul className="easier-list">
-                  <li>Doctors</li>
-                  <li>Specialists</li>
-                  <li>Insurance</li>
-                  <li>Providers</li>
-                  <li>Pharmacies</li>
-                </ul>
-              </div>
-              <div className="easier-col reveal reveal-delay-2">
-                <h3>Access more of what you need</h3>
-                <p className="easier-lead">Carverse memberships contain benefits you can put towards things like:</p>
-                <ul className="easier-list">
-                  <li>Dental &amp; vision</li>
-                  <li>Mental health &amp; counseling</li>
-                  <li>Physical therapy &amp; rehab</li>
-                  <li>Fitness, nutrition &amp; wellbeing</li>
-                  <li>Spa, salon &amp; personal care</li>
-                  <li>Home help &amp; caregiver support</li>
-                  <li>Pet care</li>
-                </ul>
-              </div>
-            </div>
-            <p className="easier-footer-line reveal">Lidia helps you make sense of all of it.</p>
+            <p className="easier-subtitle reveal reveal-delay-1">Finding care shouldn't mean figuring everything out on your own.</p>
+            <ul className="easier-questions reveal reveal-delay-2">
+              <li>Which doctor should I see?</li>
+              <li>Is that doctor covered by my insurance?</li>
+              <li>What are my options?</li>
+              <li>Where do I go?</li>
+              <li>What will it cost?</li>
+              <li>What do I do next?</li>
+            </ul>
+            <p className="easier-footer-line reveal reveal-delay-3">Careverse brings the people, providers, services, and benefits you need into one connected experience. AI-powered assistance helps you understand your options, find your way forward, and manage what comes next.</p>
           </div>
         </section>
 
