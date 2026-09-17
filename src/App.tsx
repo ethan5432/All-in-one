@@ -324,6 +324,8 @@ function App() {
           <div className="container partner-grid">
             <div className="partner-left reveal">
               <h2 className="partner-opportunity-heading">A massive opportunity to earn from care.</h2>
+              <p className="partner-opportunity-body">Careverse brings people, providers, services, and benefits together to make finding and managing care easier.</p>
+              <p className="partner-opportunity-free">AI-powered care assistance is free for everyone.</p>
               <div className="partner-commission-callout">Earn 50% on qualifying memberships.</div>
               <p className="partner-opportunity-sub">Bring Careverse to the people you serve and earn when they become qualifying members.</p>
             </div>
