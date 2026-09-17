@@ -282,7 +282,7 @@ function App() {
               <h1 className="hero-title-stacked">Get paid<br />by helping<br />people&nbsp;<span className="care-word">get&nbsp;care</span>.</h1>
             </div>
             <p className="hero-statement">Building the world's largest AI-powered care network.</p>
-            <p className="hero-commission-line">Careverse brings people, providers, services, and benefits together to make finding and managing care easier.</p>
+            <p className="hero-commission-line">Careverse brings people, providers, services, and benefits together to make finding and managing care easier, with AI-powered care assistance, free for everyone.</p>
             <div className="hero-actions">
               <a className="button" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={17} /></a>
               <a className="button button-secondary" href="#how">See how it works <ArrowRight size={17} /></a>
