@@ -657,7 +657,7 @@ function App() {
         {/* 3 — Join the Careverse partner program today */}
         <section className="section how-section" id="how">
           <div className="container">
-            <div className="center-intro reveal"><h2>Join the Careverse partner program today</h2></div>
+            <div className="center-intro reveal"><h2>Get started with Careverse</h2></div>
             <div className="how-arrow reveal" aria-hidden="true" />
             <div className="how-steps">
               <article className="how-step reveal reveal-delay-1">
