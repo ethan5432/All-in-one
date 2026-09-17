@@ -205,6 +205,67 @@ function LidiaConversation() {
   );
 }
 
+const HELPS_EXAMPLES = [
+  {
+    number: '01',
+    title: 'Understand',
+    headline: 'Make sense of what you\u2019re being told.',
+    description: 'Insurance, bills, benefits, care options, or something a provider told you.',
+    user: 'I don\u2019t understand this bill.',
+    lidia: 'Let\u2019s go through it together.',
+  },
+  {
+    number: '02',
+    title: 'Find',
+    headline: 'Find the care that\u2019s right for you.',
+    description: 'Find providers, specialists, pharmacies, services, and available options.',
+    user: 'I need a dermatologist who takes my insurance.',
+    lidia: 'Here are some options.',
+  },
+  {
+    number: '03',
+    title: 'Plan',
+    headline: 'Figure out what to do next.',
+    description: 'Understand your options, decide where to start, and know what to expect.',
+    user: 'My mom needs to see a specialist. Where do I start?',
+    lidia: 'Here\u2019s where I\u2019d start.',
+  },
+  {
+    number: '04',
+    title: 'Manage',
+    headline: 'Keep everything moving.',
+    description: 'Stay on top of appointments, forms, follow-ups, and the details that come with getting care.',
+    user: 'I have an appointment next week. What do I need to bring?',
+    lidia: 'Here\u2019s what to bring.',
+  },
+] as const;
+
+function MiniLidiaChat({ user, lidia }: { user: string; lidia: string }) {
+  return (
+    <div className="mini-lidia">
+      <div className="mini-lidia-header">
+        <div className="lidia-avatar mini-lidia-avatar">
+          <svg className="lidia-avatar-bg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#F8E5D8" fillOpacity="0.6" />
+            <path d="M32 6C44 6 56 16 56 31C56 46 45 56 31 56C17 56 8 45 8 32C8 18 19 6 32 6Z" fill="#EFCAB6" fillOpacity="0.55" />
+            <path d="M34 11C43 12 51 20 51 32C51 43 43 51 32 51C20 51 13 41 14 30C15 18 24 10 34 11Z" fill="#E6AE96" fillOpacity="0.45" />
+          </svg>
+          <div className="lidia-heart">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+        </div>
+        <span className="mini-lidia-name">Lidia</span>
+      </div>
+      <div className="mini-lidia-messages">
+        <div className="lidia-msg-user"><p>{user}</p></div>
+        <div className="lidia-msg-lidia"><p>{lidia}</p></div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [paymentType, setPaymentType] = useState<PaymentType>('annual');
@@ -538,28 +599,20 @@ function App() {
         {/* 7 — How Lidia helps */}
         <section className="section helps-section">
           <div className="container">
-            <h2 className="helps-title reveal">HOW LIDIA HELPS</h2>
+            <div className="helps-intro reveal">
+              <h2 className="helps-title">How Lidia helps</h2>
+              <p className="helps-intro-sub">Whatever you&rsquo;re trying to figure out, start with Lidia.</p>
+            </div>
             <div className="helps-columns">
-              <article className="helps-col reveal reveal-delay-1">
-                <span className="helps-number">01</span>
-                <h3>Understand</h3>
-                <p>Make sense of a diagnosis, a bill, or what your benefits actually cover.</p>
-              </article>
-              <article className="helps-col reveal reveal-delay-2">
-                <span className="helps-number">02</span>
-                <h3>Find</h3>
-                <p>Find the right specialist, provider, or membership benefit.</p>
-              </article>
-              <article className="helps-col reveal reveal-delay-3">
-                <span className="helps-number">03</span>
-                <h3>Plan</h3>
-                <p>Know your next step and what it'll cost.</p>
-              </article>
-              <article className="helps-col reveal reveal-delay-4">
-                <span className="helps-number">04</span>
-                <h3>Organize</h3>
-                <p>Keep appointments, forms, and follow-ups in one place.</p>
-              </article>
+              {HELPS_EXAMPLES.map((ex, i) => (
+                <article key={ex.title} className={`helps-col reveal reveal-delay-${i + 1}`}>
+                  <span className="helps-number">{ex.number}</span>
+                  <h3>{ex.title}</h3>
+                  <p className="helps-headline">{ex.headline}</p>
+                  <p className="helps-description">{ex.description}</p>
+                  <MiniLidiaChat user={ex.user} lidia={ex.lidia} />
+                </article>
+              ))}
             </div>
           </div>
         </section>
