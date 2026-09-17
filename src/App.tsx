@@ -331,7 +331,7 @@ function App() {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
           <nav className={menuOpen ? 'main-nav open' : 'main-nav'}>
-            <a href="#pricing" onClick={() => setMenuOpen(false)}>Partners earn</a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)}>Opportunity</a>
             <a href="#why" onClick={() => setMenuOpen(false)}>Meet Lidia</a>
             <a href="#memberships" onClick={() => setMenuOpen(false)}>Memberships</a>
             <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
