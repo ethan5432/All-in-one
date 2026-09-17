@@ -265,7 +265,6 @@ function App() {
           </button>
           <nav className={menuOpen ? 'main-nav open' : 'main-nav'}>
             <a href="#pricing" onClick={() => setMenuOpen(false)}>Partners earn</a>
-            <a href="#network" onClick={() => setMenuOpen(false)}>Networks</a>
             <a href="#why" onClick={() => setMenuOpen(false)}>Meet Lidia</a>
             <a href="#memberships" onClick={() => setMenuOpen(false)}>Memberships</a>
             <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
@@ -334,11 +333,6 @@ function App() {
                 <div className="partner-type">
                   <h3>Businesses &amp; organizations</h3>
                   <p>Add Careverse memberships to your existing offerings.</p>
-                </div>
-                <div className="partner-type">
-                  <h3>Networks</h3>
-                  <p className="partner-type-intro">Bring Careverse to the partners you manage.</p>
-                  <p className="partner-type-sub">For organizations that manage creators, agencies, affiliates, sellers, or other partners.</p>
                 </div>
               </div>
             </div>
@@ -517,96 +511,6 @@ function App() {
                   White-label storefront <span className="biz-cap-dot">·</span> Tracking &amp; attribution <span className="biz-cap-dot">·</span> Payouts handled
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Network Partners */}
-        <section className="section network-section" id="network">
-          <div className="container network-grid">
-            <div className="network-diagram-col">
-              <svg className="network-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 920" width="100%" height="100%" role="img" aria-label="Network partner ecosystem diagram">
-                <defs>
-                  <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'); .font-sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; } .text-ink { fill: #18191D; } .text-body { fill: #4A4D55; } .text-muted { fill: #6B6E76; } .text-light { fill: #92959E; } .text-red { fill: #E1062C; }`}</style>
-                  <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#E1062C" stopOpacity="0.05" /><stop offset="60%" stopColor="#E1062C" stopOpacity="0.02" /><stop offset="100%" stopColor="#E1062C" stopOpacity="0" /></radialGradient>
-                  <linearGradient id="heroFill" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#FFFDFB" /><stop offset="100%" stopColor="#FAF5EE" /></linearGradient>
-                  <filter id="shadowHero" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#18191D" floodOpacity="0.04" /><feDropShadow dx="0" dy="12" stdDeviation="16" floodColor="#18191D" floodOpacity="0.07" /><feDropShadow dx="0" dy="28" stdDeviation="36" floodColor="#18191D" floodOpacity="0.04" /></filter>
-                  <filter id="shadowCard" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" floodColor="#18191D" floodOpacity="0.03" /><feDropShadow dx="0" dy="8" stdDeviation="14" floodColor="#18191D" floodOpacity="0.05" /><feDropShadow dx="0" dy="20" stdDeviation="28" floodColor="#18191D" floodOpacity="0.025" /></filter>
-                  <filter id="shadowSubCard" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#18191D" floodOpacity="0.03" /><feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#18191D" floodOpacity="0.04" /></filter>
-                  <filter id="shadowBadge" x="-20%" y="-30%" width="140%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#18191D" floodOpacity="0.04" /></filter>
-                </defs>
-                <rect width="1280" height="920" fill="#F6F3EE" />
-                <ellipse cx="640" cy="190" rx="360" ry="240" fill="url(#heroGlow)" />
-                <g className="font-sans"><text x="640" y="88" textAnchor="middle" className="text-muted" fontSize="11.5" fontWeight="700" letterSpacing="0.22em">WHITE-LABEL  <tspan fill="#D2CCC0" fontWeight="400">·</tspan>  TRACKING  <tspan fill="#D2CCC0" fontWeight="400">·</tspan>  TECHNOLOGY  <tspan fill="#D2CCC0" fontWeight="400">·</tspan>  PAYOUTS</text></g>
-                <g className="network-lines">
-                  <line x1="640" y1="263" x2="640" y2="375" stroke="#CEC8BC" strokeWidth="2.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.1s' }} />
-                  <line x1="270" y1="375" x2="1010" y2="375" stroke="#CEC8BC" strokeWidth="1.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.3s' }} />
-                  <line x1="270" y1="375" x2="270" y2="450" stroke="#CEC8BC" strokeWidth="1.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.5s' }} />
-                  <line x1="640" y1="375" x2="640" y2="450" stroke="#CEC8BC" strokeWidth="1.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.5s' }} />
-                  <line x1="1010" y1="375" x2="1010" y2="450" stroke="#CEC8BC" strokeWidth="1.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.5s' }} />
-                  <circle cx="640" cy="375" r="3.5" fill="#8C887F" />
-                  <circle cx="270" cy="375" r="2.5" fill="#B2ACA0" />
-                  <circle cx="1010" cy="375" r="2.5" fill="#B2ACA0" />
-                  <line x1="270" y1="554" x2="270" y2="690" stroke="#CEC8BC" strokeWidth="1.5" strokeLinecap="round" className="network-line" style={{ animationDelay: '0.8s' }} />
-                </g>
-                <g transform="translate(662, 319)" className="font-sans network-label" style={{ animationDelay: '1s' }}>
-                  <rect x="-8" y="-15" width="168" height="30" rx="15" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1" filter="url(#shadowBadge)" />
-                  <circle cx="7" cy="0" r="3.5" fill="#E1062C" />
-                  <text x="18" y="4.5" className="text-ink" fontSize="13" fontWeight="700" letterSpacing="-0.01em">network override</text>
-                </g>
-                <g transform="translate(292, 622)" className="font-sans network-label" style={{ animationDelay: '1.2s' }}>
-                  <rect x="-8" y="-15" width="162" height="30" rx="15" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1" filter="url(#shadowBadge)" />
-                  <circle cx="7" cy="0" r="3.5" fill="#E1062C" />
-                  <text x="18" y="4.5" className="text-ink" fontSize="13" fontWeight="700" letterSpacing="-0.01em">partner override</text>
-                </g>
-                <g transform="translate(450, 137)" className="font-sans network-node" style={{ animationDelay: '0s' }}>
-                  <rect width="380" height="126" rx="24" fill="url(#heroFill)" stroke="#18191D" strokeWidth="1.5" filter="url(#shadowHero)" />
-                  <rect x="176" y="16" width="28" height="3" rx="1.5" fill="#E1062C" />
-                  <text x="190" y="64" textAnchor="middle" className="text-ink" fontSize="19" fontWeight="800" letterSpacing="0.08em">NETWORK PARTNER</text>
-                  <g transform="translate(190, 96)"><rect x="-56" y="-12" width="112" height="24" rx="12" fill="#F3EFE7" stroke="#E6E1D8" strokeWidth="1" /><text x="0" y="4" textAnchor="middle" className="text-body" fontSize="12.5" fontWeight="500" letterSpacing="-0.01em">Direct rate</text></g>
-                </g>
-                <g transform="translate(140, 450)" className="font-sans network-node" style={{ animationDelay: '0.4s' }}>
-                  <rect width="260" height="104" rx="18" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1.25" filter="url(#shadowCard)" />
-                  <text x="130" y="49" textAnchor="middle" className="text-ink" fontSize="16" fontWeight="800" letterSpacing="0.08em">PARTNER</text>
-                  <text x="130" y="77" textAnchor="middle" className="text-muted" fontSize="13" fontWeight="500">People they serve</text>
-                </g>
-                <g transform="translate(510, 450)" className="font-sans network-node" style={{ animationDelay: '0.5s' }}>
-                  <rect width="260" height="104" rx="18" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1.25" filter="url(#shadowCard)" />
-                  <text x="130" y="49" textAnchor="middle" className="text-ink" fontSize="16" fontWeight="800" letterSpacing="0.08em">PARTNER</text>
-                  <text x="130" y="77" textAnchor="middle" className="text-muted" fontSize="13" fontWeight="500">People they serve</text>
-                </g>
-                <g transform="translate(880, 450)" className="font-sans network-node" style={{ animationDelay: '0.6s' }}>
-                  <rect width="260" height="104" rx="18" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1.25" filter="url(#shadowCard)" />
-                  <text x="130" y="49" textAnchor="middle" className="text-ink" fontSize="16" fontWeight="800" letterSpacing="0.08em">PARTNER</text>
-                  <text x="130" y="77" textAnchor="middle" className="text-muted" fontSize="13" fontWeight="500">People they serve</text>
-                </g>
-                <g transform="translate(162, 690)" className="font-sans network-node" style={{ animationDelay: '0.9s' }}>
-                  <rect width="216" height="88" rx="16" fill="#FFFFFF" stroke="#E6E1D8" strokeWidth="1.25" filter="url(#shadowSubCard)" />
-                  <text x="108" y="42" textAnchor="middle" className="text-ink" fontSize="14" fontWeight="800" letterSpacing="0.07em">SUB-PARTNER</text>
-                  <text x="108" y="66" textAnchor="middle" className="text-muted" fontSize="12" fontWeight="500">People they serve</text>
-                </g>
-              </svg>
-            </div>
-            <div className="network-copy-col reveal reveal-delay-1">
-              <div className="eyebrow"><span className="eyebrow-line" />NETWORK PARTNERS</div>
-              <h2 className="network-heading">Grow your business through your network.</h2>
-              <p className="network-lede">Your economics can be structured around the volume generated across your network, with additional upside for qualifying business generated by participating partners.</p>
-              <div className="network-blocks">
-                <div className="network-block">
-                  <h3 className="network-block-title">Bring your partners</h3>
-                  <p className="network-block-body">Bring the creators, agencies, affiliates, sellers, or other partners you already manage.</p>
-                </div>
-                <div className="network-block">
-                  <h3 className="network-block-title">Let partners own the relationship</h3>
-                  <p className="network-block-body">Each partner can offer memberships through their own customer-facing experience while maintaining their relationship with the people they serve.</p>
-                </div>
-                <div className="network-block">
-                  <h3 className="network-block-title">Earn across the network</h3>
-                  <p className="network-block-body">Earn on your own qualifying conversions, plus a fixed override on qualifying business generated by partners you bring into the network.</p>
-                </div>
-              </div>
-              <p className="network-footer-line">Network economics are structured around your distribution, volume, and partner model.</p>
-              <a className="button" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={17} /></a>
             </div>
           </div>
         </section>
