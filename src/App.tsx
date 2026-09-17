@@ -528,7 +528,7 @@ function App() {
               <li>What will it cost?</li>
               <li>What do I do next?</li>
             </ul>
-            <p className="easier-footer-line reveal reveal-delay-3">Careverse brings the people, providers, services, and benefits you need into one connected experience. AI-powered assistance helps you understand your options, find your way forward, and manage what comes next.</p>
+            <p className="easier-footer-line reveal reveal-delay-3">You shouldn't have to become an expert just to get the care you need.</p>
           </div>
         </section>
 
