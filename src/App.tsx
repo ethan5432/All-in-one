@@ -279,10 +279,10 @@ function App() {
         <section className="hero">
     <div className="hero-copy reveal">
             <div className="hero-top">
-              <h1>Get paid by helping people <span className="care-word">get care</span>.</h1>
+              <h1 className="hero-title-stacked">Get paid<br />by helping<br />people <span className="care-word">get care</span>.</h1>
             </div>
-            <p className="hero-statement">Lidia is free for everyone. Building the world's largest AI-powered care network.</p>
-            <p className="hero-commission-line">Careverse is building a care universe where people can discover providers, navigate their options, manage their care, and access benefits — all in one place.</p>
+            <p className="hero-statement">Building the world's largest AI-powered care network.<br />AI-powered care assistance, free for everyone.</p>
+            <p className="hero-commission-line">Careverse is creating a new care universe where people, providers, services, and benefits come together — all in one place.</p>
             <div className="hero-actions">
               <a className="button" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={17} /></a>
               <a className="button button-secondary" href="#how">See how it works <ArrowRight size={17} /></a>

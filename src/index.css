@@ -154,6 +154,7 @@ a { color: inherit; }
   color: #18191D;
   font-family: var(--font);
 }
+.hero-title-stacked { line-height: 1.02; }
 .hero h1 .mark {
   color: var(--text);
 }
