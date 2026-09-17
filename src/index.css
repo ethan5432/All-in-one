@@ -993,7 +993,7 @@ h1 em { color: var(--red); font-style: normal; }
   line-height: 1.4;
 }
 .problem-body {
-  margin: 0;
+  margin: 0 0 20px;
   max-width: 480px;
   color: #4A4D55;
   font-size: clamp(16px, 1.5vw, 18px);
