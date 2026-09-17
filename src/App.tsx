@@ -281,7 +281,6 @@ function App() {
               <h1 className="hero-title-stacked">Get paid<br />by helping<br />people&nbsp;<span className="care-word">get&nbsp;care</span>.</h1>
             </div>
             <p className="hero-statement">Building the world's largest AI-powered care network.</p>
-            <p className="hero-commission-line">Careverse brings people, providers, services, and benefits together to make finding and managing care easier, with AI-powered care assistance, free for everyone.</p>
             <div className="hero-actions">
               <a className="button" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={17} /></a>
               <a className="button button-secondary" href="#how">See how it works <ArrowRight size={17} /></a>
@@ -324,22 +323,14 @@ function App() {
         <section className="section partner-section" id="pricing">
           <div className="container partner-grid">
             <div className="partner-left reveal">
-              <h2 className="partner-heading">PARTNERS WE WORK WITH</h2>
-              <div className="partner-types">
-                <div className="partner-type">
-                  <h3>Creators</h3>
-                  <p>Share Careverse with your audience.</p>
-                </div>
-                <div className="partner-type">
-                  <h3>Businesses &amp; organizations</h3>
-                  <p>Add Careverse memberships to your existing offerings.</p>
-                </div>
-              </div>
+              <h2 className="partner-opportunity-heading">A massive opportunity to earn from care.</h2>
+              <div className="partner-commission-callout">Earn 50% on qualifying memberships.</div>
+              <p className="partner-opportunity-sub">Bring Careverse to the people you serve and earn when they become qualifying members.</p>
             </div>
 
             <div className="partner-right reveal">
-              <h2 className="partner-earn-heading">HOW PARTNERS EARN</h2>
-              <p className="partner-earn-support">Choose your partner type and see what qualifying membership conversions could earn.</p>
+              <h3 className="partner-calc-heading">See what you could earn</h3>
+              <p className="partner-calc-support">Choose your partner type and see what qualifying membership conversions could earn.</p>
 
               <div className="partner-mode-toggle">
                 <button
@@ -355,8 +346,6 @@ function App() {
               </div>
 
               <div className={partnerMode === 'creator' ? 'partner-state partner-state-active' : 'partner-state'}>
-                <p className="partner-sub">Earn 50% on qualifying membership conversions you drive.</p>
-
                 <div className="calc-calculator">
                   <div className="calc-controls-col">
                     <div className="calc-billing-toggle">
@@ -429,8 +418,6 @@ function App() {
               </div>
 
               <div className={partnerMode === 'business' ? 'partner-state partner-state-active' : 'partner-state'}>
-                <p className="biz-sub">Partner economics scale with the qualifying membership volume you bring.</p>
-
                 <div className="biz-explorer">
                   <div className="biz-rate-inline">
                     <span className="biz-rate-pct">{Math.round(bizRate * 100)}%</span>

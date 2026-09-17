@@ -379,7 +379,7 @@ h1 em { color: var(--red); font-style: normal; }
 .calc-calculator {
   display: grid;
   grid-template-columns: 1.15fr .85fr;
-  margin-top: 16px;
+  margin-top: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -499,9 +499,9 @@ h1 em { color: var(--red); font-style: normal; }
   text-transform: uppercase;
 }
 .calc-earnings-amount {
-  margin: 8px 0 6px;
+  margin: 10px 0 8px;
   color: #18191D;
-  font-size: clamp(38px, 4.5vw, 52px);
+  font-size: clamp(44px, 5.5vw, 62px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -.05em;
@@ -509,14 +509,14 @@ h1 em { color: var(--red); font-style: normal; }
 }
 .calc-earnings-rate {
   color: #4A4D55;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 .calc-red-accent { color: #E1062C; font-weight: 800; }
 .calc-earnings-count {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   color: #6B6E76;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -627,59 +627,43 @@ h1 em { color: var(--red); font-style: normal; }
   position: sticky;
   top: 100px;
 }
-.partner-heading {
-  margin: 0 0 32px;
+.partner-opportunity-heading {
+  margin: 0 0 24px;
   color: #18191D;
   font-size: clamp(30px, 3.5vw, 44px);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -.04em;
 }
-.partner-types {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+.partner-commission-callout {
+  margin: 0 0 18px;
+  color: #E1062C;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.02em;
 }
-.partner-type h3 {
-  margin: 0 0 10px;
-  color: #18191D;
-  font-size: clamp(20px, 1.8vw, 24px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -.03em;
-}
-.partner-type p {
-  max-width: 280px;
-  margin: 0 0 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #E6E1D8;
+.partner-opportunity-sub {
+  margin: 0;
+  max-width: 340px;
   color: #4A4D55;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
 }
 .partner-right {
   min-width: 0;
 }
-.partner-earn-heading {
+.partner-calc-heading {
   margin: 0 0 8px;
-  font-size: clamp(30px, 3.5vw, 44px);
+  font-size: clamp(24px, 2.4vw, 32px);
   font-weight: 800;
   color: #18191D;
   line-height: 1.1;
   letter-spacing: -.04em;
-  text-transform: uppercase;
 }
-.partner-earn-sub {
-  margin: 0 0 6px;
-  color: #18191D;
-  font-size: clamp(18px, 1.8vw, 22px);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -.02em;
-}
-.partner-earn-support {
-  margin: 0 0 24px;
+.partner-calc-support {
+  margin: 0 0 20px;
   color: #4A4D55;
   font-size: 14px;
   font-weight: 400;
@@ -690,7 +674,7 @@ h1 em { color: var(--red); font-style: normal; }
 .partner-mode-toggle {
   display: flex;
   gap: 0;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
@@ -730,7 +714,7 @@ h1 em { color: var(--red); font-style: normal; }
   line-height: 1.4;
 }
 .partner-sub {
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   color: #4A4D55;
   font-size: 14px;
   font-weight: 400;
@@ -747,7 +731,7 @@ h1 em { color: var(--red); font-style: normal; }
   color: #18191D;
 }
 .biz-sub {
-  margin: 0 0 24px;
+  margin: 0 0 18px;
   color: #4A4D55;
   font-size: 16px;
   font-weight: 400;
@@ -756,7 +740,7 @@ h1 em { color: var(--red); font-style: normal; }
 
 /* Volume explorer */
 .biz-explorer {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .biz-rate-inline {
   display: flex;
@@ -865,9 +849,10 @@ h1 em { color: var(--red); font-style: normal; }
 }
 
 @media (max-width: 900px) {
-  .partner-grid { grid-template-columns: 1fr; gap: 48px; }
+  .partner-grid { grid-template-columns: 1fr; gap: 36px; }
   .partner-left { position: static; }
-  .partner-heading { margin-bottom: 24px; }
+  .partner-opportunity-heading { margin-bottom: 18px; }
+  .partner-commission-callout { margin-bottom: 14px; }
 }
 @media (max-width: 600px) {
   .partner-section { padding-top: 80px; padding-bottom: 80px; }
