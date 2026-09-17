@@ -350,7 +350,7 @@ function App() {
             <p className="hero-statement">Building the world's largest AI-powered care network.</p>
             <div className="hero-actions">
               <a className="button" href="https://careverse-creator-application.vercel.app/">Become a partner <ArrowRight size={17} /></a>
-              <a className="button button-secondary" href="#how">See how it works <ArrowRight size={17} /></a>
+              <a className="button button-secondary" href="#how">Webinar registration <ArrowRight size={17} /></a>
             </div>
           </div>
           <div className="hero-visual" aria-label="Careverse mobile care experience">
